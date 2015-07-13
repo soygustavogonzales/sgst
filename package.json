@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "gulp-concat": "^2.6.0",
-    "gulp-less": "^3.0.3"
+    "gulp-less": "^3.0.3",
+    "gulp-livereload": "^3.8.0"
   }
 }

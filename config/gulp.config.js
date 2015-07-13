@@ -28,12 +28,12 @@ var paths = {
 	js:{
 		'core:js:concat:assets':{
 			origin:[
-				'bower_components/jquery/jquery.min.js',
-				'bower_components/angular/angular.min.js',
-				'bower_components/angular-ui-utils/ui-utils.min.js',
-				'bower_components/angular-animate/angular-animate.min.js'
+				'public/bower_components/jquery/dist/jquery.min.js',
+				'public/bower_components/angular/angular.min.js',
+				'public/bower_components/angular-ui-utils/ui-utils.min.js',
+				'public/bower_components/angular-animate/angular-animate.min.js'
 			],
-			dest:'public/core/javascripts'
+			dest:'public/modules/core/javascripts'
 		},
 		'login:js:concat:assets':{
 			origin:[
