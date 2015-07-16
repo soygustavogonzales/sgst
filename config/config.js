@@ -1,18 +1,14 @@
 var q = require('q'),
 fs = require('fs'),
 l = console.log,
-path_ = '../app/routes';
+path_ = '../app/routes',
+config = require('config');
 
-var list_routes = [
-	{
-		nameSpace:'/',
-		path:path_+'/'+'index'
-	},
-	{
-		nameSpace:'/users',
-		path:path_+'/'+'users'
-	}
-]
+//Imprimira el entorno de desarrollo actual
+//l(config.util.getEnv("NODE_ENV"))
+
+//list_routes = require('routes.config.js');
+
 
 module.exports.readFiles_ = function(path) {
 	var defer =  q.defer(), listFilesJS = new Array() 
@@ -52,7 +48,7 @@ module.exports.readFiles_ = function(path) {
 
 
 
-module.exports.initRoutes = function(app){
+module.exports.initRoutes = function(list_routes,app){
 
 			list_routes.forEach(function(r,index){
 				var rout = require(r.path)

@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var q = require('q');
 var fs = require('fs');
 l = console.log;
+var list_routes = require('./config/routes.config.js');
 
 var app = express();
 var config = require('./config/config')
@@ -22,7 +23,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-config.initRoutes(app)
+
+config.initRoutes(list_routes,app)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

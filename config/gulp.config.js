@@ -14,13 +14,26 @@ var paths = {
 				origin:[
 					'public/bower_components/angular-material/angular-material.min.css'
 				],
-				dest:'public/core/stylesheets'
+				dest:'public/modules/core/stylesheets',
+				name:'all.assets.css'
 		},
 		'login:css:concat:assets':{
 				origin:[
 					'public/bower_components/angular-material/angular-material.min.css'
 				],
-				dest:'public/login/stylesheets'
+				dest:'public/login/stylesheets',
+				name:'all.assets.css'
+		},
+		'core:less:css':{
+				origin:{
+						watch:'public/modules/core/stylesheets/development/less/**/*.less',//watch
+						compile:[
+								'public/modules/core/stylesheets/development/less/*.less',//for compile
+								'public/modules/core/stylesheets/development/less/core.styles.less',//for compile
+						]
+				},
+				dest:'public/modules/core/stylesheets',
+				name:'core.styles.css'
 		}
 		
 	},
