@@ -5,8 +5,10 @@ var gulp = require('gulp'),
 	path = require('path'),
 	liveReload = require('gulp-livereload'),
 	concat = require('gulp-concat'),
-	gulp_config = require('./config/gulp.config.js');
-
+	gulp_config = require('./config/gulp.config.js'),
+	tasks = gulp_config.tasks,
+	paths = gulp_config.paths,
+	l = console.log;
 	/*
 	minifyCss = require('gulp-minify-css'),
 	jsmin = require('gulp-jsmin'),
@@ -14,39 +16,105 @@ var gulp = require('gulp'),
 	gutil = require('gulp-util'),
 	shell = require('gulp-shell'),
 	*/
+	function less2css(opt){
+				gulp.task(opt.taskName,function(){
+				return gulp.src(opt.origin)
+				.pipe(less({
+						paths:[path.join(__dirname,'less','includes')]
+				}))
+				//.pipe(minifyCss())
+				.pipe(gulp.dest(opt.dest))
+				.pipe(liveReload())
+			});
+	}
 
+	function jade2html(opt){
 
-	gulp.task('core:js:concat:assets',function(){
-			return gulp.src(gulp_config.js['core:js:concat:assets'].origin)
-								.pipe(concat('all.assets.js',{newLine:';'}))
-							.pipe(gulp.dest(gulp_config.js['core:js:concat:assets'].dest))
+		gulp.task(opt.taskName,function(){
+			return gulp.src(opt.origin)
+											.pipe(jade({
+													client:true,
+													pretty:true
+												}))
+											.pipe(gulp.dest(opt.dest))
+											.pipe(liveReload())
+		});
 
-	});
+	};
 
-	gulp.task('core:less:css',function(){
-		return gulp.src(gulp_config.css['core:less:css'].origin.compile[1])
-		.pipe(less({
-				paths:[path.join(__dirname,'less','includes')]
-		}))
-		//.pipe(minifyCss())
-		.pipe(gulp.dest(gulp_config.css['core:less:css'].dest))
-	});
+	function concatFiles(opt){
+				gulp.task(opt.taskName,function(){
+						return gulp.src(opt.origin)
+											.pipe(concat(opt.outputFileName,{newLine:';'}))
+										.pipe(gulp.dest(opt.dest))
+										.pipe(liveReload())
+				});
+				
+	};
 
-	gulp.task('core:css:concat:assets',function(){
-		return gulp.src(gulp_config.css['core:css:concat:assets'].origin)
-									.pipe(concat('all.assets.css'))
-									.pipe(gulp.dest(gulp_config.css['core:css:concat:assets'].dest))
-	});
+	function initTaskDevelopment(){
 
-gulp.task('watch',function(){
-	gulp.watch(gulp_config.css['core:less:css'].origin.watch,['core:less:css'])
+		tasks.concats.forEach(function(task){
+			var taskName  = task.name
+			var exPatrn = /(:js:)|(:css:)|(:less:)/.exec(taskName);
+			var type = exPatrn?(exPatrn[0]).split(":")[1]:null;
+
+			if(type){
+				var opt_ = {
+						taskName:taskName,
+						origin:paths[type][taskName].origin,
+						outputFileName:paths[type][taskName].outputFileName,
+						dest:paths[type][taskName].dest
+				} 
+				concatFiles(opt_)
+			}
+			switch(true){
+				case(task.watch):
+					gulp.watch(paths.js[taskName].origin,[taskName])
+					break;
+				default:
+					gulp.start(taskName)
+			}
+
+		});
+
+			tasks.jade.forEach(function(taskName){
+			jade2html({
+					taskName:taskName,
+					origin:paths.html[taskName].origin,
+					dest:paths.html[taskName].dest
+			})
+
+			gulp.watch(paths.html[taskName].origin,[taskName])
+			/*
+			*/
+
+		});
+
+			tasks.less.forEach(function(taskName){
+				
+				less2css({
+						taskName:taskName,
+						origin:paths.css[taskName].origin.compile[1],
+						dest:paths.css[taskName].dest,
+				})
+			
+				gulp.watch(paths.css[taskName].origin.watch,[taskName])
+
+			})
+		
+		}//.initDevelopment
+
+gulp.task('jade:reload', function(){
+	return gulp.src(paths.html['jade:reload'])
+	.pipe(liveReload())
 });
 
 gulp.task('default',function(){
 		//console.log('NODE_ENV: ' + config.util.getEnv('NODE_ENV'));
 		if(config.util.getEnv('NODE_ENV') === "development"){
-			gulp.start('core:css:concat:assets')
-			gulp.start('core:js:concat:assets')
-			gulp.run('watch')
+				initTaskDevelopment()
+				gulp.watch(paths.html['jade:reload'],["jade:reload"])
+				liveReload.listen()
 		}
 });
