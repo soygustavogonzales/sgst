@@ -16,7 +16,9 @@ var paths = {
 	css:{
 		'core:css:concat:assets':{
 				origin:[
-					'public/bower_components/angular-material/angular-material.min.css'
+					'public/bower_components/bootstrap/dist/css/bootstrap.min.css',
+					'public/bower_components/angular-material/angular-material.min.css',
+					'public/fontawesome/css/font-awesome.min.css'
 				],
 				dest:'public/modules/core/stylesheets',
 				outputFileName:'core.all.assets.css'
@@ -66,7 +68,11 @@ var paths = {
 						'public/bower_components/jquery/dist/jquery.min.js',
 						'public/bower_components/angular/angular.min.js',
 						'public/bower_components/angular-ui-utils/ui-utils.min.js',
-						'public/bower_components/angular-animate/angular-animate.min.js'
+						'public/bower_components/angular-animate/angular-animate.min.js',
+						'public/bower_components/angular-aria/angular-aria.min.js',
+						'public/bower_components/angular-material/angular-material.min.js',
+						'public/bower_components/angular-bootstrap/ui-bootstrap.min.js',
+						'public/bower_components/angular-ui-router/release/angular-ui-router.min.js'
 					],
 					dest:'public/modules/core/javascripts',
 					outputFileName:'core.all.assets.js'
@@ -95,7 +101,7 @@ var paths = {
 			dest:'public/modules/login/javascripts',
 			outputFileName:'login.app.js'
 		}
-	}
+	}                    
 }
 
 module.exports.paths = paths;
