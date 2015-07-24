@@ -3,6 +3,7 @@ var gulp = require('gulp'),
 	less = require('gulp-less'),
 	minifyCss = require('gulp-minify-css') ,
 	path = require('path'),
+	jade = require('gulp-jade'),
 	liveReload = require('gulp-livereload'),
 	concat = require('gulp-concat'),
 	gulp_config = require('./config/gulp.config.js'),
@@ -33,7 +34,7 @@ var gulp = require('gulp'),
 		gulp.task(opt.taskName,function(){
 			return gulp.src(opt.origin)
 											.pipe(jade({
-													client:true,
+													//client:true,
 													pretty:true
 												}))
 											.pipe(gulp.dest(opt.dest))
@@ -58,7 +59,6 @@ var gulp = require('gulp'),
 			var taskName  = task.name
 			var exPatrn = /(:js:)|(:css:)|(:less:)/.exec(taskName);
 			var type = exPatrn?(exPatrn[0]).split(":")[1]:null;
-
 			if(type){
 				var opt_ = {
 						taskName:taskName,
@@ -70,7 +70,8 @@ var gulp = require('gulp'),
 			}
 			switch(true){
 				case(task.watch):
-					gulp.watch(paths.js[taskName].origin,[taskName])
+					//console.log(task);
+					gulp.watch(paths[type][taskName].origin,[taskName])
 					break;
 				default:
 					gulp.start(taskName)

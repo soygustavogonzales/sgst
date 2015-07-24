@@ -17,11 +17,19 @@ var paths = {
 		'core:css:concat:assets':{
 				origin:[
 					'public/bower_components/bootstrap/dist/css/bootstrap.min.css',
-					'public/bower_components/angular-material/angular-material.min.css',
-					'public/fontawesome/css/font-awesome.min.css'
+					'public/bower_components/angular-material/angular-material.min.css'
+					//'public/bower_components/fontawesome/css/font-awesome.min.css'
 				],
 				dest:'public/modules/core/stylesheets',
 				outputFileName:'core.all.assets.css'
+		},
+		'core:css:concat:allmodules':{
+				origin:[
+					'public/modules/core/stylesheets/core.styles.css',
+					'public/modules/home/stylesheets/home.styles.css'
+				],
+				dest:'public/modules/core/stylesheets',
+				outputFileName:'core.all.modules.css'
 		},
 		'login:css:concat:assets':{
 				origin:[
@@ -56,11 +64,24 @@ var paths = {
 	js:{
 		'core:js:concat:allmodules':{
 					origin:[
-						'public/modules/home/javascripts/home.app.js',
-						'public/modules/login/javascripts/login.app.js'
+						'public/modules/core/javascripts/core.app.js',
+						'public/modules/home/javascripts/home.app.js'
 					],
 					dest:'public/modules/core/javascripts',
 					outputFileName:'app.js'
+		},
+		'core:js:concat:app':{
+			origin:[
+				'public/modules/core/javascripts/development/app/coreApp.js',
+				'public/modules/core/javascripts/development/app/controllers/*.js',
+				'public/modules/core/javascripts/development/app/services/*.js',
+				'public/modules/core/javascripts/development/app/directives/*.js',
+				'public/modules/core/javascripts/development/app/filters/*.js',
+				'public/modules/core/javascripts/development/app/factories/*.js'
+				//'public/modules/core/javascripts/development/app/**/*.js'
+			],
+			dest:'public/modules/core/javascripts',
+			outputFileName:'core.app.js'
 		},
 		'core:js:concat:assets':{
 					origin:[
@@ -79,7 +100,7 @@ var paths = {
 		},
 		'home:js:concat:app':{
 			origin:[
-				'public/modules/home/javascripts/development/**/.*js'
+				'public/modules/home/javascripts/development/app/**/*.js'
 			],
 			dest:'public/modules/home/javascripts',
 			outputFileName:'home.app.js'
@@ -109,9 +130,11 @@ module.exports.paths = paths;
 var tasks = {
 	concats : [
 			{name:'core:css:concat:assets',watch:false},
+			{name:'core:css:concat:allmodules',watch:true},
 			{name:'login:css:concat:assets',watch:false},
 			{name:'core:js:concat:allmodules',watch:true},
 			{name:'core:js:concat:assets',watch:false},
+			{name:'core:js:concat:app',watch:true},
 			{name:'home:js:concat:app',watch:true},
 			{name:'login:js:concat:assets',watch:false},
 			{name:'login:js:concat:app',watch:true}

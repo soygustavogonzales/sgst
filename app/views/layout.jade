@@ -1,10 +1,12 @@
 doctype html
-html
+html(ng-app="coreApp")
 		head
+			meta(name="viewport",content="width=device-width, initial-scale=1")
 			title= title
 			link(rel='stylesheet', href='/modules/core/stylesheets/core.all.assets.css')
-			link(rel='stylesheet', href='/modules/core/stylesheets/core.all.modules.styles.css')
+			link(rel='stylesheet', href='/bower_components/fontawesome/css/font-awesome.min.css')
+			link(rel='stylesheet', href='/modules/core/stylesheets/core.all.modules.css')
 		body
 				block content
 				script(src="/modules/core/javascripts/core.all.assets.js")
-				script(src="/modules/core/javascripts/core.all.modules.app.js")
+				script(src="/modules/core/javascripts/app.js")
