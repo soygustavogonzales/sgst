@@ -1,3 +1,19 @@
+.btn-submenu {
+  position: fixed;
+  margin-top: 5em;
+  right: 0;
+  z-index: 1;
+}
+md-fab-toolbar {
+  position: fixed;
+  z-index: 1;
+  font-size: 1.5em;
+  width: 100%;
+}
+md-fab-toolbar md-toolbar md-fab-actions md-button md-icon,
+md-fab-toolbar md-toolbar md-fab-actions button md-icon {
+  font-size: 1.5em;
+}
 .bottomSheetdemoBasicUsage .md-inline-list-icon-label {
   display: inline-block;
   padding-left: 10px;

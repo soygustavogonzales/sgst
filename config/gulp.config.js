@@ -1,9 +1,17 @@
 
 var paths = {
 	html:{
+		'core:jade:html':{
+			origin:'public/modules/core/views/development/**/*.jade',
+			dest:'public/modules/core/views'
+		},
 		'home:jade:html':{
 			origin:'public/modules/home/views/development/**/*.jade',
 			dest:'public/modules/home/views'
+		},
+		'sales:jade:html':{
+			origin:'public/modules/sales/views/development/**/*.jade',
+			dest:'public/modules/sales/views'
 		},
 		'login:jade:html':{
 				origin:'public/modules/login/views/development/**/*.jade',
@@ -65,7 +73,8 @@ var paths = {
 		'core:js:concat:allmodules':{
 					origin:[
 						'public/modules/core/javascripts/core.app.js',
-						'public/modules/home/javascripts/home.app.js'
+						'public/modules/home/javascripts/home.app.js',
+						'public/modules/sales/javascripts/sales.app.js'
 					],
 					dest:'public/modules/core/javascripts',
 					outputFileName:'app.js'
@@ -73,6 +82,7 @@ var paths = {
 		'core:js:concat:app':{
 			origin:[
 				'public/modules/core/javascripts/development/app/coreApp.js',
+				'public/modules/core/javascripts/development/app/providers/*.js',
 				'public/modules/core/javascripts/development/app/controllers/*.js',
 				'public/modules/core/javascripts/development/app/services/*.js',
 				'public/modules/core/javascripts/development/app/directives/*.js',
@@ -88,7 +98,7 @@ var paths = {
 						'http://localhost:1337/vorlon.js',
 						'public/bower_components/jquery/dist/jquery.min.js',
 						'public/bower_components/angular/angular.min.js',
-						'public/bower_components/angular-ui-utils/ui-utils.min.js',
+						//'public/bower_components/angular-ui-utils/ui-utils.min.js',
 						'public/bower_components/angular-animate/angular-animate.min.js',
 						'public/bower_components/angular-aria/angular-aria.min.js',
 						'public/bower_components/angular-material/angular-material.min.js',
@@ -100,10 +110,29 @@ var paths = {
 		},
 		'home:js:concat:app':{
 			origin:[
-				'public/modules/home/javascripts/development/app/**/*.js'
+				'public/modules/home/javascripts/development/app/homeApp.js',
+				'public/modules/home/javascripts/development/app/providers/*.js',
+				'public/modules/home/javascripts/development/app/controllers/*.js',
+				'public/modules/home/javascripts/development/app/services/*.js',
+				'public/modules/home/javascripts/development/app/directives/*.js',
+				'public/modules/home/javascripts/development/app/filters/*.js',
+				'public/modules/home/javascripts/development/app/factories/*.js'
 			],
 			dest:'public/modules/home/javascripts',
 			outputFileName:'home.app.js'
+		},
+		'sales:js:concat:app':{
+			origin:[
+				'public/modules/sales/javascripts/development/app/salesApp.js',
+				'public/modules/sales/javascripts/development/app/providers/*.js',
+				'public/modules/sales/javascripts/development/app/controllers/*.js',
+				'public/modules/sales/javascripts/development/app/services/*.js',
+				'public/modules/sales/javascripts/development/app/directives/*.js',
+				'public/modules/sales/javascripts/development/app/filters/*.js',
+				'public/modules/sales/javascripts/development/app/factories/*.js'
+			],
+			dest:'public/modules/sales/javascripts',
+			outputFileName:'sales.app.js'
 		},
 		'login:js:concat:assets':{
 			origin:[
@@ -131,16 +160,19 @@ var tasks = {
 	concats : [
 			{name:'core:css:concat:assets',watch:false},
 			{name:'core:css:concat:allmodules',watch:true},
-			{name:'login:css:concat:assets',watch:false},
 			{name:'core:js:concat:allmodules',watch:true},
 			{name:'core:js:concat:assets',watch:false},
 			{name:'core:js:concat:app',watch:true},
 			{name:'home:js:concat:app',watch:true},
+			{name:'sales:js:concat:app',watch:true},
+			{name:'login:css:concat:assets',watch:false},
 			{name:'login:js:concat:assets',watch:false},
 			{name:'login:js:concat:app',watch:true}
 	],
 	jade : [
+	'core:jade:html',
 	'home:jade:html',
+	'sales:jade:html',
 	'login:jade:html'
 	],
 	less : [

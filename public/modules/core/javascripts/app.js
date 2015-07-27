@@ -6,25 +6,51 @@ coreApp.config(['$mdIconProvider',function($mdIconProvider) {
 			.defaultFontSet('fontawesome');
 }])
 
-;coreApp.controller('ctrlBottomSheetExample', ['$scope','$mdBottomSheet', function($scope,$mdBottomSheet){
+coreApp.config(['$stateProvider','$urlRouterProvider', function( $stateProvider,$urlRouterProvider){
+	/*
+	$urlRouterProvider.otherwise('/');
+	$stateProvider
+		.state('home',{
+			url:'/',
+			templateUrl:'/modules/home/views/home.html',
+			controller:'ctrlHome'
+		})
+		.state('ventas',{
+			url:'/ventas',
+			templateUrl:'',
+			controller:'ctrlVentas'
+		})
+		.state('compras',{
+			url:'/compras',
+			templateUrl:'',
+			controller:'ctrlCompras'
+		})
+	*/
+}])
+;
+coreApp.controller('ctrlCore', ['$scope','$mdBottomSheet', function($scope,$mdBottomSheet){
+  console.log("ctrlCore")
   $scope.alert = '';
-
-  $scope.showListBottomSheet = function($event) {
-    $scope.alert = '';
-    $mdBottomSheet.show({
-      templateUrl: 'bottom-sheet-list-template.html',
-      controller: 'ListBottomSheetCtrl',
-      targetEvent: $event
-    }).then(function(clickedItem) {
-      $scope.alert = clickedItem.name + ' clicked!';
-    });
+  $scope.isOpen = false;
+  $scope.demo = {
+    isOpen: false,
+    count: 0,
+    selectedAlignment: 'md-right'
   };
-
+  $scope.demo2 = {
+    isOpen: false,
+    count: 0,
+    selectedAlignment: 'md-right'
+  };
+  $scope.ya = function(){
+  	console.log("hola")
+  	$scope.demo.isOpen = $scope.demo.isOpen?false:true;
+  }
   $scope.showGridBottomSheet = function($event) {
     $scope.alert = '';
     $mdBottomSheet.show({
-      templateUrl: 'bottom-sheet-grid-template.html',
-      controller: 'GridBottomSheetCtrl',
+      templateUrl: '/modules/core/views/menu-bottom.html',
+      controller: 'ctrlMenuBottom',
       targetEvent: $event
     }).then(function(clickedItem) {
       $scope.alert = clickedItem.name + ' clicked!';
@@ -33,35 +59,6 @@ coreApp.config(['$mdIconProvider',function($mdIconProvider) {
 
 }])
 
-coreApp.controller('ListBottomSheetCtrl',['$scope','$mdBottomSheet', function($scope, $mdBottomSheet) {
-
-  $scope.items = [
-    { name: 'Share', icon: 'fa fa-bed' },
-    { name: 'Upload', icon: 'fa fa-forumbee' },
-    { name: 'Copy', icon: 'fa fa-mars' },
-    { name: 'Print this page', icon: 'fa fa-neuter' },
-  ];
-
-  $scope.listItemClick = function($index) {
-    var clickedItem = $scope.items[$index];
-    $mdBottomSheet.hide(clickedItem);
-  };
-}])
-coreApp.controller('GridBottomSheetCtrl',['$scope','$mdBottomSheet', function($scope, $mdBottomSheet) {
-  $scope.items = [
-    { name: 'Hangout', icon: 'fa fa-bed' },
-    { name: 'Mail', icon: 'fa fa-forumbee' },
-    { name: 'Message', icon: 'fa fa-mars' },
-    { name: 'Copy', icon: 'fa fa-neuter' },
-    { name: 'Facebook', icon: 'fa fa-ship' },
-    { name: 'Twitter', icon: 'fa fa-street-view' },
-  ];
-
-  $scope.listItemClick = function($index) {
-    var clickedItem = $scope.items[$index];
-    $mdBottomSheet.hide(clickedItem);
-  };
-}])
 coreApp.run(['$http','$templateCache',function($http, $templateCache) {
 		/*
     var urls = [
@@ -86,6 +83,69 @@ coreApp.run(['$http','$templateCache',function($http, $templateCache) {
 
 
 
-;coreApp.service('svcSample1', [ function(){
+;
+coreApp.controller('ctrlMenuBottom',['$scope','$mdBottomSheet', function($scope, $mdBottomSheet) {
+  $scope.items = [
+    { name: 'Ventas', icon: 'fa fa-credit-card',href:"sales" },
+    { name: 'Inicio', icon: 'fa fa-home',href:"home" },
+    { name: 'Compras', icon: 'fa fa-cart-plus',href:"shopping" },
+    { name: 'Reportes', icon: 'fa fa-area-chart',href:"reports" },
+    { name: 'Configuraciones', icon: 'fa fa-wrench',href:"setup" },
+    { name: 'Twitter', icon: 'fa fa-street-view',href:"sales" },
+  ];
+
+  $scope.listItemClick = function($index) {
+    var clickedItem = $scope.items[$index];
+    $mdBottomSheet.hide(clickedItem);
+  };
+}]);;
+coreApp.service('svcSample1', [ function(){
 	//...
-}]);//..
+}]);
+//..;
+var homeApp = angular.module('homeApp',['ngMaterial','ui.router']);
+/*
+*/
+homeApp.config(['$mdIconProvider',function($mdIconProvider) {
+	$mdIconProvider
+			.defaultFontSet('fontawesome');
+}])
+
+homeApp.config(['$stateProvider','$urlRouterProvider', function( $stateProvider,$urlRouterProvider){
+	$urlRouterProvider.otherwise('/');
+	$stateProvider
+		.state('home',{
+			url:'/home',
+			templateUrl:'/modules/home/views/home.html',
+			controller:'ctrlHome'
+		})
+}])
+
+coreApp.requires.push('homeApp')
+;
+homeApp.controller('ctrlHome', ['$scope', function($scope){
+	console.log("ctrlHome");
+}]);
+var salesApp = angular.module('salesApp',['ngMaterial','ui.router']);
+/*
+*/
+salesApp.config(['$mdIconProvider',function($mdIconProvider) {
+	$mdIconProvider
+			.defaultFontSet('fontawesome');
+}])
+
+salesApp.config(['$stateProvider','$urlRouterProvider', function( $stateProvider,$urlRouterProvider){
+	$urlRouterProvider.otherwise('/');
+	$stateProvider
+		.state('sales',{
+			url:'/',
+			templateUrl:'/modules/sales/views/sales.html',
+			controller:'ctrlSales'
+		})
+}])
+
+coreApp.requires.push('salesApp')
+;
+salesApp.controller('ctrlSales', ['$scope', function($scope){
+	console.log("ctrlSales");
+}])

@@ -1,29 +1,23 @@
 extends layout
 
 block content
-	.md-padding(ng-controller="ctrlBottomSheetExample",class="md-padding")
-		h2.md.title| Usage
-		p|  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum accusamus obcaecati perspiciatis dicta, dolorum eveniet.
-		h2.md-title| Actions
-		p| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt, facere!
-		.bottom-sheet-demo.inset(layout="row",layout-sm="column",layout-align="center")
-			md-button.md-primary.md-raised(ng-click="showListBottomSheet($event)",flex="50")| Show as list
-			md-button.md-primary.md-raised(ng-click="showGridBottomSheet($event)",flex="50")| Show as Grid
-		div(ng-if="alert")
-			br
-			b.md-padding(layout="row",layout-align="center center") {{alert}}
-	script(type="text/ng-template", id="bottom-sheet-grid-template.html")
-		md-bottom-sheet.md-grid
-			md-list
-				md-list-item(ng-repeat="item in items")
-					md-button.md-grid-item-content(ng-click="listItemClick($index)")
-						md-icon.fa.fa-camera(md-font-set="{{item.icon}}")
-						.md-grid-text| {{item.name}}
-	script(type="text/ng-template", id="bottom-sheet-list-template.html")
-		md-bottom-sheet.md-list.md-has-header
-			md-subheader Comment Actions
-			md-list
-				md-list-item(ng-repeat="item in items")
-					md-button.md-grid-item-content(ng-click="listItemClick($index)")
-						md-icon(md-font-set="{{item.icon}}")
-						span.md-inline-list-icon-label| {{item.name}}
+	div(ng-controller="ctrlCore")
+		md-fab-toolbar.md-right(md-open="demo.isOpen",count="demo.count")
+			md-fab-trigger.align-with-text
+				md-button.md-fab.md-primary(aria-label="menu")
+					md-icon(md-font-set="fa fa-navicon fa-1x")
+			md-toolbar.md-warn
+				md-fab-actions.md-toolbar-tools
+					md-button.md-icon-button(aria-label="comment")
+						md-icon(md-font-set="fa fa-pen")
+					md-button.md-icon-button(aria-label="label")
+						md-icon(md-font-set="fa fa-flag")
+					md-button.md-icon-button(aria-label="photo")
+						md-icon(md-font-set="fa fa-ship")
+					md-button.md-icon-button(aria-label="photo")
+						md-icon(md-font-set="fa fa-ship")
+					md-button.md-icon-button(aria-label="photo")
+						md-icon(md-font-set="fa fa-ship")
+		md-button.btn-submenu.md-fab(ng-click="showGridBottomSheet($event)")
+				md-icon(md-font-set="fa fa-angle-down fa-2x")
+		md-content.core.md-padding(style="height:600px;",ui-view layout="column")
