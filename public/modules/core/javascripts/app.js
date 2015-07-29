@@ -1,32 +1,37 @@
-var coreApp = angular.module('coreApp',['ngMaterial','ui.router']);
-/*
-*/
+var coreApp = angular.module('coreApp',['ngMaterial','ui.router','ngMessages','LocalStorageModule']);
 coreApp.config(['$mdIconProvider',function($mdIconProvider) {
 	$mdIconProvider
 			.defaultFontSet('fontawesome');
 }])
 
-coreApp.config(['$stateProvider','$urlRouterProvider', function( $stateProvider,$urlRouterProvider){
-	/*
-	$urlRouterProvider.otherwise('/');
-	$stateProvider
-		.state('home',{
-			url:'/',
-			templateUrl:'/modules/home/views/home.html',
-			controller:'ctrlHome'
-		})
-		.state('ventas',{
-			url:'/ventas',
-			templateUrl:'',
-			controller:'ctrlVentas'
-		})
-		.state('compras',{
-			url:'/compras',
-			templateUrl:'',
-			controller:'ctrlCompras'
-		})
-	*/
+coreApp.config(['localStorageServiceProvider',function(localStorageServiceProvider) {
+	localStorageServiceProvider
+		.setPrefix('coreApp');
+ localStorageServiceProvider
+    .setStorageType('sessionStorage');
+
 }])
+
+coreApp.run(['localStorageService','svcArticles',function(localStorageService,svcArticles){
+		svcArticles.getAllArticles()
+		.then(function(response){
+
+			while(typeof(response.data)=="string"){
+				response.data = JSON.parse(response.data)
+			};
+  	localStorageService.set('articles',JSON.stringify(response.data));
+		},
+		function(err){
+			console.log(err);
+		});
+		
+
+}])
+/*
+coreApp.config(['$stateProvider','$urlRouterProvider', function( $stateProvider,$urlRouterProvider){
+	
+}])
+*/
 ;
 coreApp.controller('ctrlCore', ['$scope','$mdBottomSheet', function($scope,$mdBottomSheet){
   console.log("ctrlCore")
@@ -146,6 +151,42 @@ salesApp.config(['$stateProvider','$urlRouterProvider', function( $stateProvider
 
 coreApp.requires.push('salesApp')
 ;
-salesApp.controller('ctrlSales', ['$scope', function($scope){
-	console.log("ctrlSales");
+salesApp.controller('ctrlSales', ['$scope','localStorageService', function($scope,localStorageService){
+
+
+  $scope.querySearch = function (query) {
+    
+    var jsonData =  JSON.parse(localStorageService.get('articles'))
+    while(typeof(jsonData) == "string"){
+      console.log(jsonData);
+      jsonData = JSON.parse(jsonData)
+    }
+    var results = query ? jsonData.filter(createFilterFor(query)) : jsonData;
+    return results;
+  }
+
+  $scope.selectedItemChange = function(item) {
+    console.info('Item changed to ' + JSON.stringify(item));
+  }
+
+  function createFilterFor(query) {
+    console.log(query);
+    var lowercaseQuery = angular.lowercase(query);
+
+    return function filterFn(state) {
+      var result_ = state.value.indexOf(lowercaseQuery) === 0 
+      console.log(result_);
+      return result_;
+    };
+
+  }
+}]);
+salesApp.service('svcArticles', ['$http','$q', function($http,$q){
+/**/
+	this.getAllArticles = function(){
+
+			return $http.get('http://localhost:3001/sales.articulos');
+
+	}
+
 }])

@@ -103,6 +103,8 @@ var paths = {
 						'public/bower_components/angular-aria/angular-aria.min.js',
 						'public/bower_components/angular-material/angular-material.min.js',
 						'public/bower_components/angular-bootstrap/ui-bootstrap.min.js',
+						'public/bower_components/angular-messages/angular-messages.min.js',
+						'public/bower_components/angular-local-storage/dist/angular-local-storage.min.js',
 						'public/bower_components/angular-ui-router/release/angular-ui-router.min.js'
 					],
 					dest:'public/modules/core/javascripts',
