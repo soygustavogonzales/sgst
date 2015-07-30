@@ -1,4 +1,4 @@
-var coreApp = angular.module('coreApp',['ngMaterial','ui.router','ngMessages','LocalStorageModule']);
+var coreApp = angular.module('coreApp',['ngMaterial','ui.router','ngMessages','LocalStorageModule','ngSanitize']);
 coreApp.config(['$mdIconProvider',function($mdIconProvider) {
 	$mdIconProvider
 			.defaultFontSet('fontawesome');
@@ -32,7 +32,7 @@ coreApp.config(['$stateProvider','$urlRouterProvider', function( $stateProvider,
 	
 }])
 */
-;
+
 coreApp.controller('ctrlCore', ['$scope','$mdBottomSheet', function($scope,$mdBottomSheet){
   console.log("ctrlCore")
   $scope.alert = '';
@@ -88,7 +88,7 @@ coreApp.run(['$http','$templateCache',function($http, $templateCache) {
 
 
 
-;
+
 coreApp.controller('ctrlMenuBottom',['$scope','$mdBottomSheet', function($scope, $mdBottomSheet) {
   $scope.items = [
     { name: 'Ventas', icon: 'fa fa-credit-card',href:"sales" },
@@ -103,8 +103,8 @@ coreApp.controller('ctrlMenuBottom',['$scope','$mdBottomSheet', function($scope,
     var clickedItem = $scope.items[$index];
     $mdBottomSheet.hide(clickedItem);
   };
-}]);;
+}]);
 coreApp.service('svcSample1', [ function(){
 	//...
-}]);
+}])
 //..

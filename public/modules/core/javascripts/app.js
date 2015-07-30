@@ -1,4 +1,4 @@
-var coreApp = angular.module('coreApp',['ngMaterial','ui.router','ngMessages','LocalStorageModule']);
+var coreApp = angular.module('coreApp',['ngMaterial','ui.router','ngMessages','LocalStorageModule','ngSanitize']);
 coreApp.config(['$mdIconProvider',function($mdIconProvider) {
 	$mdIconProvider
 			.defaultFontSet('fontawesome');
@@ -32,7 +32,7 @@ coreApp.config(['$stateProvider','$urlRouterProvider', function( $stateProvider,
 	
 }])
 */
-;
+
 coreApp.controller('ctrlCore', ['$scope','$mdBottomSheet', function($scope,$mdBottomSheet){
   console.log("ctrlCore")
   $scope.alert = '';
@@ -88,7 +88,7 @@ coreApp.run(['$http','$templateCache',function($http, $templateCache) {
 
 
 
-;
+
 coreApp.controller('ctrlMenuBottom',['$scope','$mdBottomSheet', function($scope, $mdBottomSheet) {
   $scope.items = [
     { name: 'Ventas', icon: 'fa fa-credit-card',href:"sales" },
@@ -103,11 +103,11 @@ coreApp.controller('ctrlMenuBottom',['$scope','$mdBottomSheet', function($scope,
     var clickedItem = $scope.items[$index];
     $mdBottomSheet.hide(clickedItem);
   };
-}]);;
+}]);
 coreApp.service('svcSample1', [ function(){
 	//...
-}]);
-//..;
+}])
+//..
 var homeApp = angular.module('homeApp',['ngMaterial','ui.router']);
 /*
 */
@@ -130,7 +130,7 @@ coreApp.requires.push('homeApp')
 ;
 homeApp.controller('ctrlHome', ['$scope', function($scope){
 	console.log("ctrlHome");
-}]);
+}])
 var salesApp = angular.module('salesApp',['ngMaterial','ui.router']);
 /*
 */
@@ -150,9 +150,36 @@ salesApp.config(['$stateProvider','$urlRouterProvider', function( $stateProvider
 }])
 
 coreApp.requires.push('salesApp')
-;
-salesApp.controller('ctrlSales', ['$scope','localStorageService', function($scope,localStorageService){
 
+salesApp.controller('ctrlSales', ['$scope','localStorageService','$mdDialog','$sanitize','$sce', function($scope,localStorageService,$mdDialog,$sanitize,$sce){
+  /*
+  $scope.cad = "<strong>hola mundo</strong> gracias!! <script>alert('jajaja')</script>"
+  $scope.html_ = $sanitize($scope.cad); //suprime los tags <script>
+  $scope.html__ = $sce.trustAsHtml($scope.cad);
+  */
+  $scope.sendNewBuy = function(){
+    var data = {};
+    
+  }
+  $scope.showConfirmBuy = function($event){
+
+    var confirm = $mdDialog.confirm()
+        .parent(angular.element(document.body))
+        .title('¿ confirmar venta ?')
+        //.content('Confirmar venta')
+        .ariaLabel('confirmBuy')
+        .ok('confirmar')
+        .cancel('cancelar')
+        .targetEvent($event);
+
+      $mdDialog.show(confirm)
+      .then(function(){
+        console.log("OK");
+      },function(){
+        console.log("CANCEL");
+      });
+
+  }
 
   $scope.querySearch = function (query) {
     
@@ -180,7 +207,7 @@ salesApp.controller('ctrlSales', ['$scope','localStorageService', function($scop
     };
 
   }
-}]);
+}])
 salesApp.service('svcArticles', ['$http','$q', function($http,$q){
 /**/
 	this.getAllArticles = function(){

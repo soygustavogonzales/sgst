@@ -1,36 +1,42 @@
-md-toolbar.md-primary
-	h1.md-toolbar-tools Ventas
-md-content(layout="row" layout-sm="column" layout-padding)
-		form#frmVentas(flex="100" name="frmVentas" novalidate)
-			div(layout="row" layout-sm="column")
-				div(flex-gt-lg="99" flex-lg="99" flex-gt-md="99" flex-gt-sm="99" flex-sm="99")
-					md-autocomplete(
-						md-search-text="articulo"
-						md-search-text-change="change(articulo)"
-						placeholder="Busca el articulo"
-						md-items="item in querySearch(articulo)"
-						md-item-text="item.display"
-						md-selected-item-change="selectedItemChange(item)"
-					)
-						span(md-highlight-text="articulo" md-highlight-flags="^i") {{item.display}}
-					md-input-container
-						input.hide(maxlength="30" md-maxlength="30" type="text" required name="articulo" ng-model="articulo")
-						ng-messages(for="frmVentas.articulo.$error")
-							ng-message(when="required") Escriba el articulo
-							ng-message(when="md-maxlength") No se permite mas de 30 caracteres
-				br
-				div(flex-gt-md="10" flex-sm="99")
-					md-input-container
-						label Cantidad
-						input(maxlength="3" md-maxlength="3" type="number" required name="cantidad" ng-model="cantidad")
-						ng-messages(for="frmVentas.cantidad.$error")
-							ng-message(when="required") Escriba la cantidad
-							ng-message(when="md-maxlength") Lo masximo que puedes pedir es 100 unidades
-				div(flex-gt-md="10" flex-sm="99")
-					md-input-container
-						label Precio
-						input(disabled name="precio" ng-model="precio")
-				div(flex-gt-md="30" flex-sm="99")
-					md-input-container
-						label Descripcion
-						textarea(maxlength="300" md-maxlength="300" columns="1" name="descripcion" ng-model="descripcion")
+.sales
+	md-toolbar.md-primary
+		h1.md-toolbar-tools Ventas
+	md-content(layout="row" layout-sm="column" layout-padding)
+			form#frmVentas(flex="100" name="frmVentas" novalidate)
+				section(layout-sm="column")
+						md-autocomplete.search-article(
+							flex-gt-lg="99" flex-lg="99" flex-gt-md="99" flex-gt-sm="99" flex-sm="99"
+							md-search-text="articulo"
+							md-search-text-change="change(articulo)"
+							placeholder="Busca el articulo"
+							md-items="item in querySearch(articulo)"
+							md-item-text="item.display"
+							md-selected-item-change="selectedItemChange(item)"
+						)
+							span(md-highlight-text="articulo" md-highlight-flags="^i") {{item.display}}
+						md-input-container(flex-gt-lg="99" flex-lg="99" flex-gt-md="99" flex-gt-sm="99" flex-sm="99")
+							input.hide(maxlength="30" md-maxlength="30" type="text" required name="articulo" ng-model="articulo")
+							ng-messages(for="frmVentas.articulo.$error")
+								ng-message(when="required") Escriba el articulo
+								ng-message(when="md-maxlength") No se permite mas de 30 caracteres
+				section(layout="row" layout-sm="column")
+						md-input-container(flex-gt-md="20" flex-sm="99")
+							label Cantidad
+							input(type="number" min="1" max="99" required name="cantidad" ng-model="cantidad")
+							ng-messages(for="frmVentas.cantidad.$error")
+								ng-message(when="required") Un numero
+								ng-message(when="max") Maximo 99 unidades
+								ng-message(when="min") Minimo 1 unidad
+						md-input-container(flex-gt-md="20" flex-sm="99")
+							label Precio
+							input(disabled name="precio" ng-model="precio")
+						md-input-container(flex-gt-md="60" flex-sm="99")
+							label Descripcion
+							textarea(maxlength="300" md-maxlength="300" placeholder="Comentario sobre este articulo o venta específica" columns="0" name="descripcion" ng-model="descripcion")
+				section(layout="row" layout-align="end start")
+					md-button(ng-click="addFormArticle()") Agregar otro articulo
+				section(layout="row" layout-align="center center")
+					md-button.md-raised.md-primary(ng-disabled="frmVentas.$invalid" ng-click="showConfirmBuy($event)") Vender
+				div(ng-bind="cad")
+				div(ng-bind-html="html_")
+				div(ng-bind-html="html__")

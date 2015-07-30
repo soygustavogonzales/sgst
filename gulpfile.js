@@ -46,7 +46,7 @@ var gulp = require('gulp'),
 	function concatFiles(opt){
 				gulp.task(opt.taskName,function(){
 						return gulp.src(opt.origin)
-													.pipe(concat(opt.outputFileName,{newLine:';\n'}))
+													.pipe(concat(opt.outputFileName,{newLine:'\n'}))
 													.pipe(gulp.dest(opt.dest))
 													.pipe(liveReload())
 				});

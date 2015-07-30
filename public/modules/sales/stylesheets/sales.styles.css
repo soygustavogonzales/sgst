@@ -1,0 +1,17 @@
+.sales md-autocomplete.search-article {
+  height: auto;
+}
+.sales md-autocomplete.search-article md-autocomplete-wrap {
+  height: auto;
+}
+.sales md-autocomplete.search-article md-autocomplete-wrap input {
+  font-size: 1.25em;
+  padding: 1em .4em;
+}
+.md-autocomplete-suggestions [md-autocomplete-list-item] [md-highlight-text] {
+  font-size: 1.45em;
+}
+.md-autocomplete-suggestions [md-autocomplete-list-item] [md-highlight-text] .highlight {
+  background-color: #F0E68C;
+  padding: 0.32em 0 0.32em 0.32em;
+}

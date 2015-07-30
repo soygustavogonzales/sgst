@@ -34,7 +34,8 @@ var paths = {
 		'core:css:concat:allmodules':{
 				origin:[
 					'public/modules/core/stylesheets/core.styles.css',
-					'public/modules/home/stylesheets/home.styles.css'
+					'public/modules/home/stylesheets/home.styles.css',
+					'public/modules/sales/stylesheets/sales.styles.css'
 				],
 				dest:'public/modules/core/stylesheets',
 				outputFileName:'core.all.modules.css'
@@ -65,6 +66,16 @@ var paths = {
 						]
 				},
 				dest:'public/modules/core/stylesheets'
+		},
+		'sales:less:css':{
+				origin:{
+						watch:'public/modules/sales/stylesheets/development/less/**/*.less',//watch
+						compile:[
+								'public/modules/sales/stylesheets/development/less/*.less',//for compile
+								'public/modules/sales/stylesheets/development/less/sales.styles.less',//for compile
+						]
+				},
+				dest:'public/modules/sales/stylesheets'
 		}
 		
 	},
@@ -100,6 +111,7 @@ var paths = {
 						'public/bower_components/angular/angular.min.js',
 						//'public/bower_components/angular-ui-utils/ui-utils.min.js',
 						'public/bower_components/angular-animate/angular-animate.min.js',
+						'public/bower_components/angular-sanitize/angular-sanitize.min.js',
 						'public/bower_components/angular-aria/angular-aria.min.js',
 						'public/bower_components/angular-material/angular-material.min.js',
 						'public/bower_components/angular-bootstrap/ui-bootstrap.min.js',
@@ -179,7 +191,8 @@ var tasks = {
 	],
 	less : [
 	'core:less:css',
-	'login:less:css'
+	'login:less:css',
+	'sales:less:css'
 	]
 
 }

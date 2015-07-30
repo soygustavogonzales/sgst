@@ -1,4 +1,4 @@
-var coreApp = angular.module('coreApp',['ngMaterial','ui.router','ngMessages','LocalStorageModule']);
+var coreApp = angular.module('coreApp',['ngMaterial','ui.router','ngMessages','LocalStorageModule','ngSanitize']);
 coreApp.config(['$mdIconProvider',function($mdIconProvider) {
 	$mdIconProvider
 			.defaultFontSet('fontawesome');

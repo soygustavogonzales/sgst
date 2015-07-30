@@ -17,9 +17,36 @@ salesApp.config(['$stateProvider','$urlRouterProvider', function( $stateProvider
 }])
 
 coreApp.requires.push('salesApp')
-;
-salesApp.controller('ctrlSales', ['$scope','localStorageService', function($scope,localStorageService){
 
+salesApp.controller('ctrlSales', ['$scope','localStorageService','$mdDialog','$sanitize','$sce', function($scope,localStorageService,$mdDialog,$sanitize,$sce){
+  /*
+  $scope.cad = "<strong>hola mundo</strong> gracias!! <script>alert('jajaja')</script>"
+  $scope.html_ = $sanitize($scope.cad); //suprime los tags <script>
+  $scope.html__ = $sce.trustAsHtml($scope.cad);
+  */
+  $scope.sendNewBuy = function(){
+    var data = {};
+    
+  }
+  $scope.showConfirmBuy = function($event){
+
+    var confirm = $mdDialog.confirm()
+        .parent(angular.element(document.body))
+        .title('¿ confirmar venta ?')
+        //.content('Confirmar venta')
+        .ariaLabel('confirmBuy')
+        .ok('confirmar')
+        .cancel('cancelar')
+        .targetEvent($event);
+
+      $mdDialog.show(confirm)
+      .then(function(){
+        console.log("OK");
+      },function(){
+        console.log("CANCEL");
+      });
+
+  }
 
   $scope.querySearch = function (query) {
     
@@ -47,7 +74,7 @@ salesApp.controller('ctrlSales', ['$scope','localStorageService', function($scop
     };
 
   }
-}]);
+}])
 salesApp.service('svcArticles', ['$http','$q', function($http,$q){
 /**/
 	this.getAllArticles = function(){
