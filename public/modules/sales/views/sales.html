@@ -3,46 +3,45 @@
   <md-toolbar class="md-primary">
     <h1 class="md-toolbar-tools">Ventas</h1>
   </md-toolbar>
-  <md-content layout="row" layout-sm="column" layout-padding="layout-padding">
-    <form id="frmVentas" flex="100" name="frmVentas" novalidate="novalidate">
-      <section layout-sm="column">
-        <md-autocomplete flex-gt-lg="99" flex-lg="99" flex-gt-md="99" flex-gt-sm="99" flex-sm="99" md-search-text="articulo" md-search-text-change="change(articulo)" placeholder="Busca el articulo" md-items="item in querySearch(articulo)" md-item-text="item.display" md-selected-item-change="selectedItemChange(item)" class="search-article"><span md-highlight-text="articulo" md-highlight-flags="^i">{{item.display}}</span></md-autocomplete>
-        <md-input-container flex-gt-lg="99" flex-lg="99" flex-gt-md="99" flex-gt-sm="99" flex-sm="99">
-          <input maxlength="30" md-maxlength="30" type="text" required="required" name="articulo" ng-model="articulo" class="hide"/>
-          <ng-messages for="frmVentas.articulo.$error">
-            <ng-message when="required">Escriba el articulo</ng-message>
-            <ng-message when="md-maxlength">No se permite mas de 30 caracteres</ng-message>
-          </ng-messages>
-        </md-input-container>
+  <md-content>
+    <form id="frmVentas" form-list="form-list" layout="row" layout-sm="column" layout-padding="layout-padding" name="frmVentas" novalidate="novalidate">
+      <section flex="100">
+        <section layout-sm="column">
+          <md-autocomplete flex-gt-lg="99" flex-lg="99" flex-gt-md="99" flex-gt-sm="99" flex-sm="99" md-search-text="articulo" md-search-text-change="change(articulo)" placeholder="Busca el articulo" md-items="item in querySearch(articulo)" md-item-text="item.display" md-selected-item-change="selectedItemChange(item)" class="search-article"><span md-highlight-text="articulo" md-highlight-flags="^i">{{item.display}}</span></md-autocomplete>
+          <md-input-container flex-gt-lg="99" flex-lg="99" flex-gt-md="99" flex-gt-sm="99" flex-sm="99">
+            <input maxlength="30" md-maxlength="30" type="text" required="required" name="articulo" ng-model="articulo" class="hide"/>
+            <ng-messages for="frmVentas.articulo.$error">
+              <ng-message when="required">Escriba el articulo</ng-message>
+              <ng-message when="md-maxlength">No se permite mas de 30 caracteres</ng-message>
+            </ng-messages>
+          </md-input-container>
+        </section>
+        <section layout="row" layout-sm="column">
+          <md-input-container flex-gt-md="20" flex-sm="99">
+            <label>Cantidad</label>
+            <input type="number" min="1" max="99" required="required" name="cantidad" ng-model="cantidad"/>
+            <ng-messages for="frmVentas.cantidad.$error">
+              <ng-message when="required">Un numero</ng-message>
+              <ng-message when="max">Maximo 99 unidades</ng-message>
+              <ng-message when="min">Minimo 1 unidad</ng-message>
+            </ng-messages>
+          </md-input-container>
+          <md-input-container flex-gt-md="20" flex-sm="99">
+            <label>Precio</label>
+            <input disabled="disabled" name="precio" ng-model="precio"/>
+          </md-input-container>
+          <md-input-container flex-gt-md="60" flex-sm="99">
+            <label>Descripcion</label>
+            <textarea maxlength="300" md-maxlength="300" placeholder="Comentario sobre este articulo o venta específica" columns="0" name="descripcion" ng-model="descripcion"></textarea>
+          </md-input-container>
+        </section>
+        <section layout="row" layout-align="end start">
+          <md-button ng-click="addFormArticle()">Agregar otro articulo</md-button>
+        </section>
       </section>
-      <section layout="row" layout-sm="column">
-        <md-input-container flex-gt-md="20" flex-sm="99">
-          <label>Cantidad</label>
-          <input type="number" min="1" max="99" required="required" name="cantidad" ng-model="cantidad"/>
-          <ng-messages for="frmVentas.cantidad.$error">
-            <ng-message when="required">Un numero</ng-message>
-            <ng-message when="max">Maximo 99 unidades</ng-message>
-            <ng-message when="min">Minimo 1 unidad</ng-message>
-          </ng-messages>
-        </md-input-container>
-        <md-input-container flex-gt-md="20" flex-sm="99">
-          <label>Precio</label>
-          <input disabled="disabled" name="precio" ng-model="precio"/>
-        </md-input-container>
-        <md-input-container flex-gt-md="60" flex-sm="99">
-          <label>Descripcion</label>
-          <textarea maxlength="300" md-maxlength="300" placeholder="Comentario sobre este articulo o venta específica" columns="0" name="descripcion" ng-model="descripcion"></textarea>
-        </md-input-container>
-      </section>
-      <section layout="row" layout-align="end start">
-        <md-button ng-click="addFormArticle()">Agregar otro articulo</md-button>
-      </section>
-      <section layout="row" layout-align="center center">
-        <md-button ng-disabled="frmVentas.$invalid" ng-click="showConfirmBuy($event)" class="md-raised md-primary">Vender</md-button>
-      </section>
-      <div ng-bind="cad"></div>
-      <div ng-bind-html="html_"></div>
-      <div ng-bind-html="html__"></div>
     </form>
+    <section layout="row" layout-align="center center">
+      <md-button ng-disabled="frmVentas.$invalid" ng-click="showConfirmBuy($event)" class="md-raised md-primary">Vender</md-button>
+    </section>
   </md-content>
 </div>

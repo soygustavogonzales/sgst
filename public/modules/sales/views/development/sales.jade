@@ -1,8 +1,9 @@
 .sales
 	md-toolbar.md-primary
 		h1.md-toolbar-tools Ventas
-	md-content(layout="row" layout-sm="column" layout-padding)
-			form#frmVentas(flex="100" name="frmVentas" novalidate)
+	md-content
+		form#frmVentas(form-list layout="row" layout-sm="column" layout-padding  name="frmVentas" novalidate)
+			section(flex="100")
 				section(layout-sm="column")
 						md-autocomplete.search-article(
 							flex-gt-lg="99" flex-lg="99" flex-gt-md="99" flex-gt-sm="99" flex-sm="99"
@@ -35,8 +36,5 @@
 							textarea(maxlength="300" md-maxlength="300" placeholder="Comentario sobre este articulo o venta específica" columns="0" name="descripcion" ng-model="descripcion")
 				section(layout="row" layout-align="end start")
 					md-button(ng-click="addFormArticle()") Agregar otro articulo
-				section(layout="row" layout-align="center center")
-					md-button.md-raised.md-primary(ng-disabled="frmVentas.$invalid" ng-click="showConfirmBuy($event)") Vender
-				div(ng-bind="cad")
-				div(ng-bind-html="html_")
-				div(ng-bind-html="html__")
+		section(layout="row" layout-align="center center")
+			md-button.md-raised.md-primary(ng-disabled="frmVentas.$invalid" ng-click="showConfirmBuy($event)") Vender
