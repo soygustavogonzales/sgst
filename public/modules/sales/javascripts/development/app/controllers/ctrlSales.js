@@ -5,6 +5,8 @@ salesApp.controller('ctrlSales', ['$scope','localStorageService','$mdDialog','$s
   $scope.html__ = $sce.trustAsHtml($scope.cad);
   */
   var countFields = 1;
+  $scope.models = new Object();
+  $scope.fields = new Array();
   $scope.articulos = [
     {
       name:"Harina 1",
@@ -19,7 +21,7 @@ salesApp.controller('ctrlSales', ['$scope','localStorageService','$mdDialog','$s
       id:"$03"
     }
   ];
-  
+
   function addFieldsToForm(i) {
 
       [
@@ -36,13 +38,6 @@ salesApp.controller('ctrlSales', ['$scope','localStorageService','$mdDialog','$s
       });
 
   };
-  $scope.models = {}
-  $scope.isValid = function(){
-      console.log($scope.frmVentas);
-      console.log($scope);
-      return false;
-  };
-  $scope.fields = new Array();
   $scope.addFormArticle = function(){
     var i = countFields;
     $scope.fields.push({
@@ -54,6 +49,7 @@ salesApp.controller('ctrlSales', ['$scope','localStorageService','$mdDialog','$s
     countFields++;
     console.log($scope.frmVentas)
   }
+  $scope.addFormArticle();
   $scope.sendNewBuy = function(){
     var data = {};
     

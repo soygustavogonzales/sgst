@@ -25,6 +25,7 @@ var paths = {
 		'core:css:concat:assets':{
 				origin:[
 					'public/bower_components/bootstrap/dist/css/bootstrap.min.css',
+					'public/bower_components/angucomplete-alt/angucomplete-alt.css',
 					'public/bower_components/angular-material/angular-material.min.css'
 					//'public/bower_components/fontawesome/css/font-awesome.min.css'
 				],
@@ -52,20 +53,22 @@ var paths = {
 						watch:'public/modules/core/stylesheets/development/less/**/*.less',//watch
 						compile:[
 								'public/modules/core/stylesheets/development/less/*.less',//for compile
-								'public/modules/core/stylesheets/development/less/core.styles.less',//for compile
+								'public/modules/core/stylesheets/development/less/core.styles.less'//for compile
 						]
 				},
-				dest:'public/modules/core/stylesheets'
+				dest:'public/modules/core/stylesheets',
+				path_dependencies:['public/modules/core/stylesheets/development/less']
 		},
 		'login:less:css':{
 				origin:{
 						watch:'public/modules/login/stylesheets/development/less/**/*.less',//watch
 						compile:[
 								'public/modules/login/stylesheets/development/less/*.less',//for compile
-								'public/modules/login/stylesheets/development/less/login.styles.less',//for compile
-						]
+								'public/modules/login/stylesheets/development/less/login.styles.less'//for compile
+						],
 				},
-				dest:'public/modules/core/stylesheets'
+				dest:'public/modules/core/stylesheets',
+				path_dependencies:['public/modules/login/stylesheets/development/less']
 		},
 		'sales:less:css':{
 				origin:{
@@ -75,7 +78,11 @@ var paths = {
 								'public/modules/sales/stylesheets/development/less/sales.styles.less',//for compile
 						]
 				},
-				dest:'public/modules/sales/stylesheets'
+				dest:'public/modules/sales/stylesheets',
+				path_dependencies:[
+					'public/modules/sales/stylesheets/development/less',
+					'public/modules/core/stylesheets/development/less'
+				]
 		}
 		
 	},

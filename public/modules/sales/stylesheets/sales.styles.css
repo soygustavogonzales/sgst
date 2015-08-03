@@ -1,3 +1,7 @@
+/*
+@smartphones:  ~&quot;only screen and (max-width: 479px)&quot;;
+@tablets: ~&quot;only screen and (min-width: 768px) and (max-width: 959px)&quot;;
+*/
 .sales md-autocomplete.search-article {
   height: auto;
 }
@@ -8,10 +12,48 @@
   font-size: 1.25em;
   padding: 1em .4em;
 }
-.md-autocomplete-suggestions [md-autocomplete-list-item] [md-highlight-text] {
-  font-size: 1.45em;
+.sales md-card {
+  margin: 0;
 }
-.md-autocomplete-suggestions [md-autocomplete-list-item] [md-highlight-text] .highlight {
+.sales md-card md-card-content {
+  padding: 8px;
+}
+.sales [neutralized-styles-form] {
+  padding: 8px 2px;
+}
+@media only screen and (max-width: 529px) {
+  .sales [neutralized-styles-form] [neutralized-styles-list] {
+    padding: 8px 0px;
+  }
+}
+.sales .md-select {
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  -webkit-order: 2;
+  -ms-flex-order: 2;
+  order: 2;
+  display: block;
+  background: none;
+  padding-top: 2px;
+  padding-bottom: 1px;
+  padding-left: 2px;
+  padding-right: 2px;
+  border-width: 0 0 1px 0;
+  line-height: 26px;
+  -ms-flex-preferred-size: 26px;
+  border-radius: 0;
+  width: 100%;
+  background-position: 0 bottom;
+  background-size: 4px 1px;
+  background-repeat: repeat-x;
+  margin-bottom: -1px;
+}
+.sales .md-select:focus,
+.sales .md-select:invalid {
+  outline: none;
+}
+.sales .highlight {
   background-color: #F0E68C;
   padding: 0.32em 0 0.32em 0.32em;
 }

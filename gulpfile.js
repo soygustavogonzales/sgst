@@ -21,7 +21,7 @@ var gulp = require('gulp'),
 				gulp.task(opt.taskName,function(){
 				return gulp.src(opt.origin)
 				.pipe(less({
-						paths:[path.join(__dirname,'less','includes')]
+						paths:[path.join([__dirname,opt.path_dependencies].join('/'))]
 				}))
 				//.pipe(minifyCss())
 				.pipe(gulp.dest(opt.dest))
@@ -98,6 +98,7 @@ var gulp = require('gulp'),
 						taskName:taskName,
 						origin:paths.css[taskName].origin.compile[1],
 						dest:paths.css[taskName].dest,
+						path_dependencies:paths.css[taskName].path_dependencies
 				})
 			
 				gulp.watch(paths.css[taskName].origin.watch,[taskName])
