@@ -110,6 +110,7 @@ var paths = {
 						'public/bower_components/jquery/dist/jquery.min.js',
 						'public/bower_components/angular/angular.min.js',
 						//'public/bower_components/angular-ui-utils/ui-utils.min.js',
+						'public/bower_components/angucomplete-alt/dist/angucomplete-alt.min.js',
 						'public/bower_components/angular-animate/angular-animate.min.js',
 						'public/bower_components/angular-sanitize/angular-sanitize.min.js',
 						'public/bower_components/angular-aria/angular-aria.min.js',

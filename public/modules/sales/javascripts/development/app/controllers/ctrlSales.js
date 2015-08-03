@@ -5,6 +5,21 @@ salesApp.controller('ctrlSales', ['$scope','localStorageService','$mdDialog','$s
   $scope.html__ = $sce.trustAsHtml($scope.cad);
   */
   var countFields = 1;
+  $scope.articulos = [
+    {
+      name:"Harina 1",
+      id:"$01"
+    },
+    {
+      name:"Levadura 1",
+      id:"$02"
+    },
+    {
+      name:"Azucar 1",
+      id:"$03"
+    }
+  ];
+  
   function addFieldsToForm(i) {
 
       [
