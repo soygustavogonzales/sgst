@@ -1,1 +1,18 @@
-@color2: '#eee';
+.scrollbars{
+			&::-webkit-scrollbar-track
+			{
+				//-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+				background-color: rgba(125,116,116,.12);
+				border:1px solid rgb(255,255,255);
+				box-sizing: border-box;
+			}
+		&::-webkit-scrollbar
+		{
+			background-color: transparent;
+			height: 6px;
+		}
+		&::-webkit-scrollbar-thumb
+		{
+			background-color: #ddd;
+		}
+}

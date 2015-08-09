@@ -45,18 +45,27 @@ md-fab-toolbar md-toolbar md-fab-actions button md-icon {
 @smartphones:  ~&quot;only screen and (max-width: 479px)&quot;;
 @tablets: ~&quot;only screen and (min-width: 768px) and (max-width: 959px)&quot;;
 */
-.sales md-autocomplete.search-article {
-  height: auto;
+.scrollbars::-webkit-scrollbar-track {
+  background-color: rgba(125, 116, 116, 0.12);
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
 }
-.sales md-autocomplete.search-article md-autocomplete-wrap {
-  height: auto;
+.scrollbars::-webkit-scrollbar {
+  background-color: transparent;
+  height: 6px;
 }
-.sales md-autocomplete.search-article md-autocomplete-wrap input {
-  font-size: 1.25em;
-  padding: 1em .4em;
+.scrollbars::-webkit-scrollbar-thumb {
+  background-color: #ddd;
+}
+.sales .angucomplete-dropdown {
+  width: 100%;
 }
 .sales md-card {
   margin: 0;
+}
+.sales md-card .md-subheader {
+  word-spacing: .09em;
+  font-size: .95em;
 }
 .sales md-card md-card-content {
   padding: 8px;

@@ -1,18 +1,17 @@
 @import '../../../../core/stylesheets/development/less/variables/media-displays.less';
+@import '../../../../core/stylesheets/development/less/mixins/mixin.less';
 
 .sales{
-	md-autocomplete.search-article{
-		height: auto;
-		md-autocomplete-wrap{
-			height:auto;
-			input{
-				font-size: 1.25em;
-				padding: 1em .4em;
-			}
-		}
+	.angucomplete-dropdown {
+		width:100%;
 	}
 	md-card{
 		margin: 0;
+		.md-subheader {
+			word-spacing: .09em;
+			font-size: .95em;
+			//background-color: black;
+		}
 		md-card-content {
 			padding: 8px;
 		}
@@ -27,7 +26,6 @@
 		
 	}
 	.md-select {
-
 	    -webkit-flex: 1 1 auto;
 	        -ms-flex: 1 1 auto;
 	            flex: 1 1 auto;
@@ -53,9 +51,8 @@
 	    	outline: none;
 	    }
 	}
-				.highlight{
-					background-color: #F0E68C;
-					//font-weight: 700;
-					padding:0.32em 0 0.32em 0.32em;
-				}
+	.highlight{
+		background-color: #F0E68C;
+		padding:0.32em 0 0.32em 0.32em;
+	}
 }
