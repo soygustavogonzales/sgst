@@ -6,9 +6,8 @@ var gulp = require('gulp'),
 	jade = require('gulp-jade'),
 	liveReload = require('gulp-livereload'),
 	concat = require('gulp-concat'),
-	gulp_config = require('./config/gulp.config.js'),
-	tasks = gulp_config.tasks,
-	paths = gulp_config.paths,
+	tasks = require('./config/gulp.tasks.js'),
+	paths = require('./config/gulp.paths.js'),
 	l = console.log;
 	/*
 	minifyCss = require('gulp-minify-css'),
@@ -23,7 +22,6 @@ var gulp = require('gulp'),
 				.pipe(less({
 						paths:[path.join([__dirname,opt.path_dependencies].join('/'))]
 				}))
-				//.pipe(minifyCss())
 				.pipe(gulp.dest(opt.dest))
 				.pipe(liveReload())
 			});

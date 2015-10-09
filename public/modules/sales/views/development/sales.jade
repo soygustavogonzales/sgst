@@ -21,7 +21,7 @@
 						md-input-container(flex-gt-md="20" flex-sm="99")
 							label Cantidad
 							input(type="number" min="1" max="99" name="{{field.cantidad}}" ng-model="models[field.cantidad]" required)
-							ng-messages(for="frmVentas[field.cantidad].$error")
+							ng-messages( for="frmVentas[field.cantidad].$error")
 								ng-message(when="required") Un numero
 								ng-message(when="max") Maximo 99 unidades
 								ng-message(when="min") Minimo 1 unidad

@@ -66,3 +66,14 @@
   background-color: #F0E68C;
   padding: 0.32em 0 0.32em 0.32em;
 }
+.sales section {
+  opacity: 1;
+}
+.sales section.ng-enter {
+  -webkit-transition: 1s;
+  transition: 1s;
+  opacity: 0;
+}
+.sales section.ng-enter-active {
+  opacity: 1;
+}

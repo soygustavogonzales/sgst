@@ -1,6 +1,7 @@
 @import '../../../../core/stylesheets/development/less/variables/media-displays.less';
 @import '../../../../core/stylesheets/development/less/mixins/mixin.less';
 
+
 .sales{
 	.angucomplete-dropdown {
 		width:100%;
@@ -54,5 +55,16 @@
 	.highlight{
 		background-color: #F0E68C;
 		padding:0.32em 0 0.32em 0.32em;
+	}
+	section {
+   opacity: 1;
+			&.ng-enter {
+			    -webkit-transition: 1s;
+			    transition: 1s;
+			    opacity: 0;
+			}
+			&.ng-enter-active {
+			    opacity: 1;
+			}
 	}
 }
