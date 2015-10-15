@@ -1,0 +1,25 @@
+{
+	"pages":[
+		{
+			"core":{
+				"modules":[
+					{
+						"sales":{
+							"submodules":[
+							]
+						},
+						"shopping":{
+							"submodules":[
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"login":{
+
+			}
+		}
+	]
+}

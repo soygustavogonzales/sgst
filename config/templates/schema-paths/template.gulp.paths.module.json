@@ -1,0 +1,28 @@
+{
+	"html":{
+		"{[moduleName]}:jade:html":{
+			"origin":"public/modules/{[moduleName]}/views/development/**/*.jade",
+			"dest":"public/modules/{[moduleName]}/views"
+		}
+	},
+	"css":{
+		"{[moduleName]}:less:css":{
+				"origin":{
+						"watch":"public/modules/{[moduleName]}/stylesheets/development/less/**/*.less",
+						"compile":[
+								"public/modules/{[moduleName]}/stylesheets/development/less/*.less",
+								"public/modules/{[moduleName]}/stylesheets/development/less/{[moduleName]}.styles.less"
+						]
+				},
+				"dest":"public/modules/{[moduleName]}/stylesheets",
+				"path_dependencies":["public/modules/{[moduleName]}/stylesheets/development/less"]
+		}
+	},
+	"js":{
+		"{[moduleName]}:js:concat:assets":{
+					"origin":[],
+					"dest":"public/modules/{[moduleName]}/javascripts",
+					"outputFileName":"{[moduleName]}.all.assets.js"
+		}
+	}
+}

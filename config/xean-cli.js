@@ -4,29 +4,19 @@ q = require('q'),
 asciiArt = require('ascii-art'),
 ttycolor = require('ttycolor'),
 fs = require('fs'),
+fs_extra = require('fs-extra'),
+jsonFile  = require('jsonfile'),
 path = require('path');
-
 var sets = cli_input.sets,
 definitions = sets.definitions,
 name = path.basename(process.argv[1]),
 def = definitions.confirm.clone(),
 ttycolor = ttycolor.defaults(),
-ps = cli_input()
+ps = cli_input(),
+gulp_paths = require('./gulp.paths')
 ;
-readFile();
-function readFile(){
-    //console.info(fs.readFileSync('tree.js'));
-
-    fs.readFile('tree.js', function(err,data){
-      if(err){
-        throw err
-      }else{
-        console.log(data);
-      } 
-        console.log(data);
-    });
-
-};
+var templates = new Object();
+templates.path = require('./templates.paths.config.js');
 
 
 var schema = {
@@ -41,9 +31,36 @@ var parameter = definitions.question.clone({
   repeat:true
 });
 
+function readFile(path){
+
+  var defer = q.defer();
+    fs.readFile(path,'utf-8',function(err,data){
+        if(err){
+         throw err;
+         defer.reject(false)
+        }
+        else{ defer.resolve(data)};
+    });
+    return defer.promise;
+
+};
+
+function prompt(parameters,callback){
+  var defer = q.defer();
+  var parameters_ = definitions.question.clone({key:'name',parameters: parameters,message:"%s >",required:true,repeat:true});
+  var schema = {schema:{type:'string'}};
+  ps.run([parameters_], schema, function(err,res){
+    if(err)
+      defer.reject(err);
+    else
+      defer.resolve(res);      
+  });
+  return defer.promise;
+};
+
 function startCLI() {
-  ps.run([parameter], {schema:schema}, function(err,res){
-    //console.log(JSON.stringify(res.map))
+
+  ps.run([definitions.question.clone({key:'name',parameters: ['enter command'],message:"%s >",required:true,repeat:true})], {schema:{type:'string'}}, function(err,res){
     for(i in (res.map)){
         var command = res.map[i];
         command = command.trim()
@@ -53,8 +70,47 @@ function startCLI() {
           case('create'):
             switch(command_[1]){
               case('module'):
-                readFile()
-                console.log(command_[1]);
+                readFile('tree.json')
+                .then(function(data){
+                  return JSON.parse(data);
+                })
+                .then(function(tree){
+
+                  var pages = tree.pages.map(function(element){
+                    return Object.keys(element).toString();
+                  });
+                  
+                  console.log('Elija un número ¿En que página desea crear este nuevo módulo?');
+                  selectOption(pages,'Que número?')
+                  .then(function(data){
+                    prompt(['module name'])
+                    .then(function(res){
+                      //console.log(templates.path.module);
+                      var nameModule = res.map.name;
+                      var text = fs.readFileSync('./templates/schema-paths/template.gulp.paths.module.json', 'utf-8')
+                      var text_ =JSON.stringify(JSON.parse(text).html);
+                      var json_ = JSON.parse(text_.replace(/\{\[moduleName\]\}/ig,nameModule));
+                      gulp_paths.html[Object.keys(json_)] = json_[Object.keys(json_)]; 
+                      //console.log(Object.keys(gulp_paths.html));
+                      var newJson_ = 'module.exports = \n'+JSON.stringify(gulp_paths);
+                      console.log(newJson_);
+                      fs.writeFile('./gulp.paths.js', newJson_, function (err) {
+                        if (err) throw err;
+                        console.log('It\'s saved!');
+                      });
+                       
+                      /*
+                      jsonFile.spaces = 4;
+                      jsonFile.writeFile('./gulp.paths.js', gulp_paths, function (err) {
+                        console.error(err)
+                      })
+                      */
+                      process.exit(0);
+                    });
+                  });
+                  
+                });
+                //Object.prototype.toString.call()
                 break;
               case('page'):
                 break;
@@ -69,9 +125,34 @@ function startCLI() {
             console.log('nothing');
         }
     }
-    process.exit(0)
   });  
 
+}
+
+function writeFiles(pathLayout, pathNewFile, moduleName, nameFile) {
+  /*
+  readFileByLine = lineByLine(pathFile);
+  readFileByLine.on('line', function(line, lineCount, byteCount) {
+    // do something with the line of text 
+    console.log(line)
+  });
+
+  readFileByLine.on('error', function(e) {
+    console.log(e)
+    // something went wrong 
+  });
+  */
+  var defer = q.defer();
+  fs_extra.copy(pathLayout, pathNewFile +"/"+moduleName+ "/"+ nameFile, function (err) {
+    if (err){
+      return console.error(colors.error(err))
+      defer.reject(err)
+    } else{
+      console.log(colors.info("\nNew file in: \n "+ pathNewFile +"/"+colors.verbose(moduleName)+"/"+colors.verbose(nameFile)))
+      defer.resolve(true)
+    }
+  }) // copies file 
+  return defer.promise
 }
 
 function startMenu(){
@@ -89,31 +170,33 @@ function create(command){
   }
 };
 
-function selectOption(options){
+function selectOption(options,msj){
+    var defer = q.defer();
+    ps.on('invalid', function(line, index, options, ps) {
+      if(isNaN(index)) {
+        console.error('%s ! not a number %s', name, line);
+      }else{
+        console.error(
+          '%s ! not a known option index %s', name, line);
+      }
+    })
 
-		ps.on('invalid', function(line, index, options, ps) {
-		  if(isNaN(index)) {
-		    console.error('%s ! not a number %s', name, line);
-		  }else{
-		    console.error(
-		      '%s ! not a known option index %s', name, line);
-		  }
-		})
 
+    var opts = {list: options};
+    var def = definitions.option.clone();
+    def.message = msj+'(%s)?';
+    def.parameters = ['1-' + options.length];
+    opts.prompt = def;
 
-		var opts = {list: options};
-		var def = definitions.option.clone();
-		def.message = 'which language floats your boat (%s)?';
-		def.parameters = ['1-' + options.length];
-		opts.prompt = def;
-
-		ps.select(opts, function(err, res, index, line) {
-		  if(err || !res) return console.error(err);
-		  console.log('%s, really? cool.', res.value);
-		  process.exit(res ? 0 : 1);
-		});
+    ps.select(opts, function(err, res, index, line) {
+      if(err || !res){
+        defer.reject(false)
+      }else{
+        console.log('Elegiste %s, Genial.', res.value.toUpperCase());
+        defer.resolve(true)
+      }
+    });
+    return defer.promise;
 }
-
-//selectOption(['Javascript','Ruby','Perl',]);
 
 startMenu();
