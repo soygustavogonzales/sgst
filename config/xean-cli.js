@@ -5,7 +5,6 @@ asciiArt = require('ascii-art'),
 ttycolor = require('ttycolor'),
 fs = require('fs'),
 fs_extra = require('fs-extra'),
-jsonFile  = require('jsonfile'),
 path = require('path');
 var sets = cli_input.sets,
 definitions = sets.definitions,
@@ -87,24 +86,18 @@ function startCLI() {
                     .then(function(res){
                       //console.log(templates.path.module);
                       var nameModule = res.map.name;
-                      var text = fs.readFileSync('./templates/schema-paths/template.gulp.paths.module.json', 'utf-8')
-                      var text_ =JSON.stringify(JSON.parse(text).html);
-                      var json_ = JSON.parse(text_.replace(/\{\[moduleName\]\}/ig,nameModule));
-                      gulp_paths.html[Object.keys(json_)] = json_[Object.keys(json_)]; 
-                      //console.log(Object.keys(gulp_paths.html));
-                      var newJson_ = 'module.exports = \n'+JSON.stringify(gulp_paths);
-                      console.log(newJson_);
-                      fs.writeFile('./gulp.paths.js', newJson_, function (err) {
-                        if (err) throw err;
-                        console.log('It\'s saved!');
-                      });
-                       
-                      /*
-                      jsonFile.spaces = 4;
-                      jsonFile.writeFile('./gulp.paths.js', gulp_paths, function (err) {
-                        console.error(err)
-                      })
-                      */
+                      var text = fs.readFileSync('./templates/schema-paths/template.gulp.paths.module.json', 'utf-8');
+
+                      [{type:'html'},{type:'css'},{type:'js'}].forEach(function(obj){
+                          //console.log(JSON.stringify(this));
+                          var PathTemplate = JSON.stringify(JSON.parse(text)[obj.type]);
+                          var PathTemplateJson = JSON.parse(PathTemplate.replace(/\{\[moduleName\]\}/ig,nameModule));
+                          this[obj.type][Object.keys(PathTemplateJson)] = PathTemplateJson[Object.keys(PathTemplateJson)]; 
+                          
+                      },gulp_paths)
+
+                      var newJson_ = 'module.exports = \n'+JSON.stringify(gulp_paths,null,'\t');
+                      fs.writeFileSync('./sample.js',newJson_);
                       process.exit(0);
                     });
                   });
