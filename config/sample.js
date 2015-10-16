@@ -20,9 +20,9 @@ module.exports =
 		"jade:reload": [
 			"app/views/**/*.jade"
 		],
-		"GOKU:jade:html": {
-			"origin": "public/modules/GOKU/views/development/**/*.jade",
-			"dest": "public/modules/GOKU/views"
+		"eros:jade:html": {
+			"origin": "public/modules/eros/views/development/**/*.jade",
+			"dest": "public/modules/eros/views"
 		}
 	},
 	"css": {
@@ -91,17 +91,17 @@ module.exports =
 				"public/modules/core/stylesheets/development/less"
 			]
 		},
-		"GOKU:less:css": {
+		"eros:less:css": {
 			"origin": {
-				"watch": "public/modules/GOKU/stylesheets/development/less/**/*.less",
+				"watch": "public/modules/eros/stylesheets/development/less/**/*.less",
 				"compile": [
-					"public/modules/GOKU/stylesheets/development/less/*.less",
-					"public/modules/GOKU/stylesheets/development/less/GOKU.styles.less"
+					"public/modules/eros/stylesheets/development/less/*.less",
+					"public/modules/eros/stylesheets/development/less/eros.styles.less"
 				]
 			},
-			"dest": "public/modules/GOKU/stylesheets",
+			"dest": "public/modules/eros/stylesheets",
 			"path_dependencies": [
-				"public/modules/GOKU/stylesheets/development/less"
+				"public/modules/eros/stylesheets/development/less"
 			]
 		}
 	},
@@ -189,10 +189,10 @@ module.exports =
 			"dest": "public/modules/login/javascripts",
 			"outputFileName": "login.app.js"
 		},
-		"GOKU:js:concat:assets": {
+		"eros:js:concat:assets": {
 			"origin": [],
-			"dest": "public/modules/GOKU/javascripts",
-			"outputFileName": "GOKU.all.assets.js"
+			"dest": "public/modules/eros/javascripts",
+			"outputFileName": "eros.all.assets.js"
 		}
 	}
 }

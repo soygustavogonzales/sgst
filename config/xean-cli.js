@@ -5,6 +5,7 @@ asciiArt = require('ascii-art'),
 ttycolor = require('ttycolor'),
 fs = require('fs'),
 fs_extra = require('fs-extra'),
+wrench = require('wrench'),
 path = require('path');
 var sets = cli_input.sets,
 definitions = sets.definitions,
@@ -81,29 +82,45 @@ function startCLI() {
                   
                   console.log('Elija un número ¿En que página desea crear este nuevo módulo?');
                   selectOption(pages,'Que número?')
-                  .then(function(data){
+                  .then(function(pageName){
                     prompt(['module name'])
                     .then(function(res){
                       //console.log(templates.path.module);
-                      var nameModule = res.map.name;
+                      var moduleName = res.map.name;
                       var text = fs.readFileSync('./templates/schema-paths/template.gulp.paths.module.json', 'utf-8');
 
                       [{type:'html'},{type:'css'},{type:'js'}].forEach(function(obj){
-                          //console.log(JSON.stringify(this));
+                          
                           var PathTemplate = JSON.stringify(JSON.parse(text)[obj.type]);
-                          var PathTemplateJson = JSON.parse(PathTemplate.replace(/\{\[moduleName\]\}/ig,nameModule));
+                          var PathTemplateJson = JSON.parse(PathTemplate.replace(/\{\[moduleName\]\}/ig,moduleName));
                           this[obj.type][Object.keys(PathTemplateJson)] = PathTemplateJson[Object.keys(PathTemplateJson)]; 
                           
                       },gulp_paths)
 
                       var newJson_ = 'module.exports = \n'+JSON.stringify(gulp_paths,null,'\t');
                       fs.writeFileSync('./sample.js',newJson_);
+                      return {
+                        pageName:pageName,
+                        moduleName:moduleName
+                      }
+                    })
+                    .then(function(data){
+
+                      copyRecursiveSync('./templates/module','../public/modules/'+data.moduleName)
+                      data.srcDest = '../public/modules/'+data.moduleName;
+                      
+                      return data  
+                    })
+                    .then(function(data){
+
+                      console.log(JSON.stringify(data));
+                      inspectRecursiveSync(data.srcDest,data);
                       process.exit(0);
-                    });
+
+                    })
                   });
                   
                 });
-                //Object.prototype.toString.call()
                 break;
               case('page'):
                 break;
@@ -122,19 +139,50 @@ function startCLI() {
 
 }
 
-function writeFiles(pathLayout, pathNewFile, moduleName, nameFile) {
-  /*
-  readFileByLine = lineByLine(pathFile);
-  readFileByLine.on('line', function(line, lineCount, byteCount) {
-    // do something with the line of text 
-    console.log(line)
-  });
+function inspectRecursiveSync(src,opt) {
 
-  readFileByLine.on('error', function(e) {
-    console.log(e)
-    // something went wrong 
-  });
-  */
+
+  var exists = fs.existsSync(src);
+  var stats = exists && fs.statSync(src);
+  var isDirectory = exists && stats.isDirectory();
+  if (exists && isDirectory) {
+
+    fs.readdirSync(src).forEach(function(childItemName) {
+      inspectRecursiveSync(path.join(src, childItemName),opt);
+    });
+
+  } else {
+
+    var text = fs.readFileSync(src, 'utf-8');
+    if(text.trim().length>0){
+
+      var text_ = text.replace(/\{\[moduleName\]\}/ig,opt.moduleName)
+                  .replace(/\{\[parentModuleName\]\}/ig,opt.pageName)
+      fs.writeFileSync(src,text_);
+      console.log(src);
+      
+    }
+
+  }
+};
+
+function copyRecursiveSync(src, dest) {
+  var exists = fs.existsSync(src);
+  var stats = exists && fs.statSync(src);
+  var isDirectory = exists && stats.isDirectory();
+  if (exists && isDirectory) {
+    fs.mkdirSync(dest);
+    fs.readdirSync(src).forEach(function(childItemName) {
+      copyRecursiveSync(path.join(src, childItemName),
+                        path.join(dest, childItemName));
+    });
+  } else {
+    fs.linkSync(src, dest);
+  }
+};
+
+function writeFiles(pathLayout, pathNewFile, moduleName, nameFile) {
+ 
   var defer = q.defer();
   fs_extra.copy(pathLayout, pathNewFile +"/"+moduleName+ "/"+ nameFile, function (err) {
     if (err){
@@ -186,7 +234,7 @@ function selectOption(options,msj){
         defer.reject(false)
       }else{
         console.log('Elegiste %s, Genial.', res.value.toUpperCase());
-        defer.resolve(true)
+        defer.resolve(res.value)
       }
     });
     return defer.promise;
