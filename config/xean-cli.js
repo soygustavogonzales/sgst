@@ -98,7 +98,7 @@ function startCLI() {
                       },gulp_paths)
 
                       var newJson_ = 'module.exports = \n'+JSON.stringify(gulp_paths,null,'\t');
-                      fs.writeFileSync('./sample.js',newJson_);
+                      fs.writeFileSync('./gulp.paths.js',newJson_);
                       return {
                         pageName:pageName,
                         moduleName:moduleName
