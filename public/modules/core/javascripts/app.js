@@ -137,15 +137,27 @@ var salesApp = angular.module('salesApp',['ngMaterial','ui.router']);
 salesApp.config(['$mdIconProvider',function($mdIconProvider) {
 	$mdIconProvider
 			.defaultFontSet('fontawesome');
-}])
+}]);
 
 salesApp.config(['$stateProvider','$urlRouterProvider', function( $stateProvider,$urlRouterProvider){
 	$urlRouterProvider.otherwise('/');
 	$stateProvider
 		.state('sales',{
 			url:'/',
-			templateUrl:'/modules/sales/views/sales.html',
-			controller:'ctrlSales'
+			views:{
+				'@':{
+					templateUrl:'/modules/sales/views/sales.html',
+					controller:'ctrlSales'
+				},
+				'info@sales':{
+						templateUrl:'/modules/sales@info/views/sales@info.html',
+						controller:'ctrlInfo'
+				},
+				'detail@sales':{
+						template:'<em>hello from detail@sales</em>',
+						controller:'ctrlInfo'
+				}
+			}
 		})
 }])
 
@@ -278,3 +290,10 @@ salesApp.directive('drvScrollX', [function(){
 		}
 	}
 }]);
+/*
+*/
+var ctrlInfo = function($scope){
+	$scope.saiHi = "desde ctrlInfo"
+};
+
+salesApp.controller('ctrlInfo',['$scope',ctrlInfo]);

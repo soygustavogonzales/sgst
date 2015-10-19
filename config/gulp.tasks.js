@@ -9,18 +9,21 @@ var tasks = {
 			{name:'sales:js:concat:app',watch:true},
 			{name:'login:css:concat:assets',watch:false},
 			{name:'login:js:concat:assets',watch:false},
-			{name:'login:js:concat:app',watch:true}
+			{name:'login:js:concat:app',watch:true},
+			{name:"sales@info:js:concat:app",watch:true}
 	],
 	jade : [
 	'core:jade:html',
 	'home:jade:html',
 	'sales:jade:html',
+	'sales@info:jade:html',
 	'login:jade:html'
 	],
 	less : [
 	'core:less:css',
 	'login:less:css',
-	'sales:less:css'
+	'sales:less:css',
+	'sales@info:less:css'
 	]
 
 }

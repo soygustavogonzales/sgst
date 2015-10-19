@@ -40,3 +40,5 @@
 		md-button(ng-click="addFormArticle()") Agregar otro articulo
 	section(layout="row" layout-align="center center")
 		md-button.md-raised.md-primary(ng-disabled="frmVentas.$invalid" ng-click="showConfirmBuy($event)") Vender
+	article(ui-view="info")
+	article(ui-view="detail")
