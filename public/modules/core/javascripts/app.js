@@ -293,7 +293,9 @@ salesApp.directive('drvScrollX', [function(){
 /*
 */
 var ctrlInfo = function($scope){
-	$scope.saiHi = "desde ctrlInfo"
+	$scope.saiHi = "hola desde ctrlInfo"
 };
 
-salesApp.controller('ctrlInfo',['$scope',ctrlInfo]);
+ctrlInfo.$inject = ['$scope'];
+
+salesApp.controller('ctrlInfo',ctrlInfo);
