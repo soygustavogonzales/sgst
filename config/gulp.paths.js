@@ -9,21 +9,10 @@ module.exports =
 			"origin": "public/modules/home/views/development/**/*.jade",
 			"dest": "public/modules/home/views"
 		},
-		"sales:jade:html": {
-			"origin": "public/modules/sales/views/development/**/*.jade",
-			"dest": "public/modules/sales/views"
-		},
-		"login:jade:html": {
-			"origin": "public/modules/login/views/development/**/*.jade",
-			"dest": "public/modules/login/views"
-		},
-		"sales@info:jade:html": {
-			"origin": "public/modules/sales@info/views/development/**/*.jade",
-			"dest": "public/modules/sales@info/views"
-		},
-		"jade:reload": [
-			"app/views/**/*.jade"
-		]
+		"grounds:jade:html": {
+			"origin": "public/modules/grounds/views/development/**/*.jade",
+			"dest": "public/modules/grounds/views"
+		}
 	},
 	"css": {
 		"core:css:concat:assets": {
@@ -39,8 +28,7 @@ module.exports =
 			"origin": [
 				"public/modules/core/stylesheets/core.styles.css",
 				"public/modules/home/stylesheets/home.styles.css",
-				"public/modules/sales/stylesheets/sales.styles.css",
-				"public/modules/sales@info/stylesheets/sales@info.styles.css"
+				"public/modules/home/stylesheets/grounds.styles.css"
 			],
 			"dest": "public/modules/core/stylesheets",
 			"outputFileName": "core.all.modules.css"
@@ -58,51 +46,30 @@ module.exports =
 				"public/modules/core/stylesheets/development/less"
 			]
 		},
-		"login:css:concat:assets": {
-			"origin": [
-				"public/bower_components/angular-material/angular-material.min.css"
-			],
-			"dest": "public/modules/login/stylesheets",
-			"outputFileName": "login.all.assets.css"
-		},
-		"login:less:css": {
+		"grounds:less:css": {
 			"origin": {
-				"watch": "public/modules/login/stylesheets/development/less/**/*.less",
+				"watch": "public/modules/grounds/stylesheets/development/less/**/*.less",
 				"compile": [
-					"public/modules/login/stylesheets/development/less/*.less",
-					"public/modules/login/stylesheets/development/less/login.styles.less"
+					"public/modules/grounds/stylesheets/development/less/*.less",
+					"public/modules/grounds/stylesheets/development/less/grounds.styles.less"
 				]
 			},
-			"dest": "public/modules/core/stylesheets",
+			"dest": "public/modules/grounds/stylesheets",
 			"path_dependencies": [
-				"public/modules/login/stylesheets/development/less"
-			]
-		},
-		"sales:less:css": {
-			"origin": {
-				"watch": "public/modules/sales/stylesheets/development/less/**/*.less",
-				"compile": [
-					"public/modules/sales/stylesheets/development/less/*.less",
-					"public/modules/sales/stylesheets/development/less/sales.styles.less"
-				]
-			},
-			"dest": "public/modules/sales/stylesheets",
-			"path_dependencies": [
-				"public/modules/sales/stylesheets/development/less",
 				"public/modules/core/stylesheets/development/less"
 			]
 		},
-		"sales@info:less:css": {
+		"home:less:css": {
 			"origin": {
-				"watch": "public/modules/sales@info/stylesheets/development/less/**/*.less",
+				"watch": "public/modules/home/stylesheets/development/less/**/*.less",
 				"compile": [
-					"public/modules/sales@info/stylesheets/development/less/*.less",
-					"public/modules/sales@info/stylesheets/development/less/sales@info.styles.less"
+					"public/modules/home/stylesheets/development/less/*.less",
+					"public/modules/home/stylesheets/development/less/home.styles.less"
 				]
 			},
-			"dest": "public/modules/sales@info/stylesheets",
+			"dest": "public/modules/home/stylesheets",
 			"path_dependencies": [
-				"public/modules/sales@info/stylesheets/development/less"
+				"public/modules/core/stylesheets/development/less"
 			]
 		}
 	},
@@ -111,7 +78,7 @@ module.exports =
 			"origin": [
 				"public/modules/core/javascripts/core.app.js",
 				"public/modules/home/javascripts/home.app.js",
-				"public/modules/sales/javascripts/sales.app.js"
+				"public/modules/grounds/javascripts/grounds.app.js"
 			],
 			"dest": "public/modules/core/javascripts",
 			"outputFileName": "app.js"
@@ -147,32 +114,6 @@ module.exports =
 			"dest": "public/modules/core/javascripts",
 			"outputFileName": "core.all.assets.js"
 		},
-		"sales:js:concat:app": {
-			"origin": [
-				"public/modules/sales/javascripts/development/app/salesApp.js",
-				"public/modules/sales/javascripts/development/app/providers/*.js",
-				"public/modules/sales/javascripts/development/app/controllers/*.js",
-				"public/modules/sales/javascripts/development/app/services/*.js",
-				"public/modules/sales/javascripts/development/app/directives/*.js",
-				"public/modules/sales/javascripts/development/app/filters/*.js",
-				"public/modules/sales/javascripts/development/app/factories/*.js",
-				"public/modules/sales@info/javascripts/sales@info.app.js"
-			],
-			"dest": "public/modules/sales/javascripts",
-			"outputFileName": "sales.app.js"
-		},
-		"sales@info:js:concat:app": {
-			"origin": [
-				"public/modules/sales@info/javascripts/development/app/providers/*.js",
-				"public/modules/sales@info/javascripts/development/app/controllers/*.js",
-				"public/modules/sales@info/javascripts/development/app/services/*.js",
-				"public/modules/sales@info/javascripts/development/app/directives/*.js",
-				"public/modules/sales@info/javascripts/development/app/filters/*.js",
-				"public/modules/sales@info/javascripts/development/app/factories/*.js"
-			],
-			"dest": "public/modules/sales@info/javascripts",
-			"outputFileName": "sales@info.app.js"
-		},
 		"home:js:concat:app": {
 			"origin": [
 				"public/modules/home/javascripts/development/app/homeApp.js",
@@ -186,22 +127,18 @@ module.exports =
 			"dest": "public/modules/home/javascripts",
 			"outputFileName": "home.app.js"
 		},
-		"login:js:concat:assets": {
+		"grounds:js:concat:app": {
 			"origin": [
-				"bower_components/jquery/jquery.min.js",
-				"bower_components/angular/angular.min.js",
-				"bower_components/angular-ui-utils/ui-utils.min.js",
-				"bower_components/angular-animate/angular-animate.min.js"
+				"public/modules/grounds/javascripts/development/app/groundsApp.js",
+				"public/modules/grounds/javascripts/development/app/providers/*.js",
+				"public/modules/grounds/javascripts/development/app/controllers/*.js",
+				"public/modules/grounds/javascripts/development/app/services/*.js",
+				"public/modules/grounds/javascripts/development/app/directives/*.js",
+				"public/modules/grounds/javascripts/development/app/filters/*.js",
+				"public/modules/grounds/javascripts/development/app/factories/*.js"
 			],
-			"dest": "public/login/javascripts",
-			"outputFileName": "login.all.assets.js"
-		},
-		"login:js:concat:app": {
-			"origin": [
-				"public/modules/login/javascripts/development/**/.*js"
-			],
-			"dest": "public/modules/login/javascripts",
-			"outputFileName": "login.app.js"
-		},
+			"dest": "public/modules/grounds/javascripts",
+			"outputFileName": "grounds.app.js"
+		}
 	}
 }

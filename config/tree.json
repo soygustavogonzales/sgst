@@ -4,11 +4,15 @@
 			"core":{
 				"modules":[
 					{
-						"sales":{
+						"ground":{
 							"submodules":[
 							]
 						},
 						"shopping":{
+							"submodules":[
+							]
+						},
+						"home":{
 							"submodules":[
 							]
 						}

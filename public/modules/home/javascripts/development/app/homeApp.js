@@ -10,7 +10,7 @@ homeApp.config(['$stateProvider','$urlRouterProvider', function( $stateProvider,
 	$urlRouterProvider.otherwise('/');
 	$stateProvider
 		.state('home',{
-			url:'/home',
+			url:'/',
 			templateUrl:'/modules/home/views/home.html',
 			controller:'ctrlHome'
 		})

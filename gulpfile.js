@@ -98,7 +98,6 @@ var gulp = require('gulp'),
 						dest:paths.css[taskName].dest,
 						path_dependencies:paths.css[taskName].path_dependencies
 				})
-			
 				gulp.watch(paths.css[taskName].origin.watch,[taskName])
 
 			})
