@@ -1,21 +1,6 @@
-coreApp.controller('ctrlCore', ['$scope','$mdBottomSheet', function($scope,$mdBottomSheet){
+coreApp.controller('ctrlCore', ['$rootScope','$scope','$mdBottomSheet', function($rootScope,$scope,$mdBottomSheet){
   console.log("ctrlCore")
-  $scope.alert = '';
-  $scope.isOpen = false;
-  $scope.demo = {
-    isOpen: false,
-    count: 0,
-    selectedAlignment: 'md-right'
-  };
-  $scope.demo2 = {
-    isOpen: false,
-    count: 0,
-    selectedAlignment: 'md-right'
-  };
-  $scope.ya = function(){
-  	console.log("hola")
-  	$scope.demo.isOpen = $scope.demo.isOpen?false:true;
-  }
+
   $scope.showGridBottomSheet = function($event) {
     $scope.alert = '';
     $mdBottomSheet.show({
@@ -26,6 +11,21 @@ coreApp.controller('ctrlCore', ['$scope','$mdBottomSheet', function($scope,$mdBo
       $scope.alert = clickedItem.name + ' clicked!';
     });
   };
+/*
+  $rootScope.$on('$stateChangeStart',
+    function(event, toState, toParams, fromState, fromParams){
+        console.group("start");
+          console.log(fromState);
+        console.groupEnd("start");
+    });
+
+  $rootScope.$on('$stateChangeSuccess',
+    function(event, toState, toParams, fromState, fromParams){
+        console.group("end");
+          console.log(fromState);
+        console.groupEnd("end");
+    });
+*/
 
 }])
 

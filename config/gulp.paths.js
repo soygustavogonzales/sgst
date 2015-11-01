@@ -28,7 +28,7 @@ module.exports =
 			"origin": [
 				"public/modules/core/stylesheets/core.styles.css",
 				"public/modules/home/stylesheets/home.styles.css",
-				"public/modules/home/stylesheets/grounds.styles.css"
+				"public/modules/grounds/stylesheets/grounds.styles.css"
 			],
 			"dest": "public/modules/core/stylesheets",
 			"outputFileName": "core.all.modules.css"
@@ -109,7 +109,11 @@ module.exports =
 				"public/bower_components/angular-bootstrap/ui-bootstrap.min.js",
 				"public/bower_components/angular-messages/angular-messages.min.js",
 				"public/bower_components/angular-local-storage/dist/angular-local-storage.min.js",
-				"public/bower_components/angular-ui-router/release/angular-ui-router.min.js"
+				"public/bower_components/angular-ui-router/release/angular-ui-router.min.js",
+				"public/bower_components/lodash/lodash.min.js",
+				"public/bower_components/angular-simple-logger/dist/angular-simple-logger.min.js",
+				"public/bower_components/angular-google-maps/dist/angular-google-maps.min.js",
+				"https://maps.googleapis.com/maps/api/js?sensor=false"
 			],
 			"dest": "public/modules/core/javascripts",
 			"outputFileName": "core.all.assets.js"

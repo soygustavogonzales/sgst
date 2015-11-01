@@ -5,6 +5,42 @@
 .core {
   font-size: 1.4em;
 }
+.core[ui-view].ng-enter,
+.core[ui-view].ng-leave {
+  position: absolute;
+  left: 0;
+  right: 0;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+.core[ui-view].ng-enter {
+  opacity: 0;
+  -webkit-transform: scale3d(0.5, 0.5, 0.5);
+  -moz-transform: scale3d(0.5, 0.5, 0.5);
+  transform: scale3d(0.5, 0.5, 0.5);
+}
+.core[ui-view].ng-enter-active {
+  opacity: 1;
+  -webkit-transform: scale3d(1, 1, 1);
+  -moz-transform: scale3d(1, 1, 1);
+  transform: scale3d(1, 1, 1);
+}
+.core[ui-view].ng-leave {
+  opacity: 1;
+  /*padding-left: 0px;*/
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+.core[ui-view].ng-leave-active {
+  opacity: 0;
+  /*padding-left: 100px;*/
+  -webkit-transform: translate3d(100px, 0, 0);
+  -moz-transform: translate3d(100px, 0, 0);
+  transform: translate3d(100px, 0, 0);
+}
 .btn-submenu {
   position: fixed;
   margin-top: 5em;
@@ -41,82 +77,10 @@ md-fab-toolbar md-toolbar md-fab-actions button md-icon {
 }
 
 
-/*
-@smartphones:  ~&quot;only screen and (max-width: 479px)&quot;;
-@tablets: ~&quot;only screen and (min-width: 768px) and (max-width: 959px)&quot;;
-*/
-.scrollbars::-webkit-scrollbar-track {
-  background-color: rgba(125, 116, 116, 0.12);
-  border: 1px solid #ffffff;
-  box-sizing: border-box;
+.grounds .angular-google-map-container {
+  height: 200px;
+  width: 200px;
 }
-.scrollbars::-webkit-scrollbar {
-  background-color: transparent;
-  height: 6px;
-}
-.scrollbars::-webkit-scrollbar-thumb {
-  background-color: #ddd;
-}
-.sales .angucomplete-dropdown {
-  width: 100%;
-}
-.sales md-card {
-  margin: 0;
-}
-.sales md-card .md-subheader {
-  word-spacing: .09em;
-  font-size: .95em;
-}
-.sales md-card md-card-content {
-  padding: 8px;
-}
-.sales [neutralized-styles-form] {
-  padding: 8px 2px;
-}
-@media only screen and (max-width: 529px) {
-  .sales [neutralized-styles-form] [neutralized-styles-list] {
-    padding: 8px 0px;
-  }
-}
-.sales .md-select {
-  -webkit-flex: 1 1 auto;
-  -ms-flex: 1 1 auto;
-  flex: 1 1 auto;
-  -webkit-order: 2;
-  -ms-flex-order: 2;
-  order: 2;
-  display: block;
-  background: none;
-  padding-top: 2px;
-  padding-bottom: 1px;
-  padding-left: 2px;
-  padding-right: 2px;
-  border-width: 0 0 1px 0;
-  line-height: 26px;
-  -ms-flex-preferred-size: 26px;
-  border-radius: 0;
-  width: 100%;
-  background-position: 0 bottom;
-  background-size: 4px 1px;
-  background-repeat: repeat-x;
-  margin-bottom: -1px;
-}
-.sales .md-select:focus,
-.sales .md-select:invalid {
-  outline: none;
-}
-.sales .highlight {
-  background-color: #F0E68C;
-  padding: 0.32em 0 0.32em 0.32em;
-}
-.sales section {
-  opacity: 1;
-}
-.sales section.ng-enter {
-  -webkit-transition: 1s;
-  transition: 1s;
-  opacity: 0;
-}
-.sales section.ng-enter-active {
-  opacity: 1;
+.grounds img {
+  width: 200px;
 }

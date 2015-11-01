@@ -35,5 +35,8 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "devDependencies": {
+    "angular-google-maps": "~2.2.1"
+  }
 }

@@ -1,1 +1,21 @@
-p hola mundo desde grounds {{saiHi}}
+.grounds
+	md-toolbar.md-primary
+		h1.md-toolbar-tools Gestion de Terrenos
+	md-content.md-padding
+		md-card
+			md-list
+				md-subheader.md-no-sticky Lista de Terrenos
+				md-list-item.md-3-line(ng-repeat="ground in grounds")
+					div.md-list-item-text(layout="column")
+						div(layout="row")
+							h3{{ground.regPub}}
+						div(layout="row" layout-sm="column" layout-align="start start" layout-wrap)
+							div(flex)
+								h4{{ground.direction}}
+								p{{ground.notes}}
+							div(flex)
+								ui-gmap-google-map(center='ground.coordinates',zoom='16')
+										ui-gmap-marker(coords="ground.coordinates" idkey="$index")
+							div(flex)
+									img(src="{{ground.picture}}")
+					md-divider
