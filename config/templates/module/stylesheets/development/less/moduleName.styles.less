@@ -1,9 +1,55 @@
+@import '../../../../core/stylesheets/development/less/variables/media-displays.less';
+@import '../../../../core/stylesheets/development/less/mixins/mixin.less';
 .grounds{
-	.angular-google-map-container { 
-		height: 200px;
-		width: 200px;
+	md-list-item{
+
+			padding: .8em;
+			.angular-google-map-container{ 
+				position: absolute;
+				opacity: .98;
+				height: 250px;
+				width: 94%;
+				z-index: 0;
+			}
+		.md-list-item-text{
+				position: relative;
+				z-index: 1;
+					.angular-google-map-container{ 
+							position: relative;
+							opacity: .98;
+							height: 150px;
+							z-index: 1;
+						}
+				.ground-subject{
+					padding: .5em;
+					overflow: hidden;
+					@media @tablet{
+						background-color: rgba(33,33,33,.5);
+						h4{
+							color: white ;
+						}
+						p{
+							color: white ;
+						}
+					}
+					@media @desktop-xl{
+						background-color: rgba(33,33,33,.5);
+						h4{
+							color: white ;
+						}
+						p{
+							color: white ;
+						}
+					}
+				}
+		}
 	}
+	
 	img{
 		width: 200px;
+		opacity: .5;
+		float: right;
+		width: 180px;
+		height: 160px;
 	}
 }

@@ -6,16 +6,29 @@
 			md-list
 				md-subheader.md-no-sticky Lista de Terrenos
 				md-list-item.md-3-line(ng-repeat="ground in grounds")
-					div.md-list-item-text(layout="column")
+					ui-gmap-google-map(hide-sm center='ground.coordinates',zoom='16')
+							ui-gmap-marker(coords="ground.coordinates" idkey="$index")
+					div.md-list-item-text(layout="column" layout-padding)
 						div(layout="row")
-							h3{{ground.regPub}}
-						div(layout="row" layout-sm="column" layout-align="start start" layout-wrap)
-							div(flex)
+							h3:em Registro Publico# {{ground.regPub}}
+						div(layout="row" layout-sm="column" layout-align-sm="center center" layout-align-gt-sm="start start" layout-wrap)
+							div.ground-subject(flex flex-gt-sm="30")
 								h4{{ground.direction}}
 								p{{ground.notes}}
 							div(flex)
-								ui-gmap-google-map(center='ground.coordinates',zoom='16')
-										ui-gmap-marker(coords="ground.coordinates" idkey="$index")
-							div(flex)
-									img(src="{{ground.picture}}")
+								img(src="{{ground.picture}}")
+							div(flex show-sm hide-gt-sm)
+								//ui-gmap-google-map( center='ground.coordinates',zoom='16')
+									ui-gmap-marker(coords="ground.coordinates" idkey="$index")
+						div(layout="row" layout-sm="row" layout-align-sm="space-between center")
+							div
+								md-button(flex ng-click="showEditGround($event)").md-fab.md-primary
+									md-icon(md-font-set="fa fa fa-pencil")
+									md-tooltip(md-direction="bottom")
+										| Editar
+							div
+								md-button(flex ng-click="showConfirmRemove($event)").md-fab.md-warn
+									md-icon(md-font-set="fa fa fa-remove")
+									md-tooltip(md-direction="bottom")
+										| Eliminar
 					md-divider

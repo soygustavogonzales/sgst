@@ -1,7 +1,69 @@
-.grounds .angular-google-map-container {
-  height: 200px;
-  width: 200px;
+/*
+@smartphones:  ~&quot;only screen and (max-width: 479px)&quot;;
+@tablets: ~&quot;only screen and (min-width: 768px) and (max-width: 959px)&quot;;
+*/
+.scrollbars::-webkit-scrollbar-track {
+  background-color: rgba(125, 116, 116, 0.12);
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+}
+.scrollbars::-webkit-scrollbar {
+  background-color: transparent;
+  height: 6px;
+}
+.scrollbars::-webkit-scrollbar-thumb {
+  background-color: #ddd;
+}
+.grounds md-list-item {
+  padding: .8em;
+}
+.grounds md-list-item .angular-google-map-container {
+  position: absolute;
+  opacity: .98;
+  height: 250px;
+  width: 94%;
+  z-index: 0;
+}
+.grounds md-list-item .md-list-item-text {
+  position: relative;
+  z-index: 1;
+}
+.grounds md-list-item .md-list-item-text .angular-google-map-container {
+  position: relative;
+  opacity: .98;
+  height: 150px;
+  z-index: 1;
+}
+.grounds md-list-item .md-list-item-text .ground-subject {
+  padding: .5em;
+  overflow: hidden;
+}
+@media only screen and (min-width: 530px) and (max-width: 949px) {
+  .grounds md-list-item .md-list-item-text .ground-subject {
+    background-color: rgba(33, 33, 33, 0.5);
+  }
+  .grounds md-list-item .md-list-item-text .ground-subject h4 {
+    color: white ;
+  }
+  .grounds md-list-item .md-list-item-text .ground-subject p {
+    color: white ;
+  }
+}
+@media only screen and (min-width: 1129px) {
+  .grounds md-list-item .md-list-item-text .ground-subject {
+    background-color: rgba(33, 33, 33, 0.5);
+  }
+  .grounds md-list-item .md-list-item-text .ground-subject h4 {
+    color: white ;
+  }
+  .grounds md-list-item .md-list-item-text .ground-subject p {
+    color: white ;
+  }
 }
 .grounds img {
   width: 200px;
+  opacity: .5;
+  float: right;
+  width: 180px;
+  height: 160px;
 }

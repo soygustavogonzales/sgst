@@ -12,6 +12,10 @@ module.exports =
 		"grounds:jade:html": {
 			"origin": "public/modules/grounds/views/development/**/*.jade",
 			"dest": "public/modules/grounds/views"
+		},
+		"grounds:partials:jade:html": {
+			"origin": "public/modules/grounds/views/development/partials/**/*.jade",
+			"dest": "public/modules/grounds/views/partials"
 		}
 	},
 	"css": {
