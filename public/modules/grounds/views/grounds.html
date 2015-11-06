@@ -7,10 +7,9 @@
     <md-card>
       <md-list>
         <md-subheader class="md-no-sticky">Lista de Terrenos</md-subheader>
-        <md-list-item ng-repeat="ground in grounds" class="md-3-line">
-          <ui-gmap-google-map hide-sm="hide-sm" center="ground.coordinates" zoom="16">
-            <ui-gmap-marker coords="ground.coordinates" idkey="$index"></ui-gmap-marker>
-          </ui-gmap-google-map>
+        <md-list-item ng-repeat="(index,ground) in grounds" class="md-3-line">
+          <!--ui-gmap-google-map(hide-sm center='ground.coordinates',zoom='16')ui-gmap-marker(coords="ground.coordinates" idkey="$index")
+          -->
           <div layout="column" layout-padding="layout-padding" class="md-list-item-text">
             <div layout="row">
               <h3:em>Registro Publico# {{ground.regPub}}</h3:em>
@@ -20,21 +19,17 @@
                 <h4>{{ground.direction}}</h4>
                 <p>{{ground.notes}}</p>
               </div>
-              <div flex="flex"><img src="{{ground.picture}}"/></div>
-              <div flex="flex" show-sm="show-sm" hide-gt-sm="hide-gt-sm">
-                <!--ui-gmap-google-map( center='ground.coordinates',zoom='16')ui-gmap-marker(coords="ground.coordinates" idkey="$index")
-                -->
-              </div>
+              <div flex="flex"><img src="{{ground.picture.src}}"/></div>
             </div>
             <div layout="row" layout-sm="row" layout-align-sm="space-between center">
               <div>
-                <md-button flex="flex" ng-click="showEditGround($event)" class="md-fab md-primary">
+                <md-button flex="flex" ng-click="showEditGround(index,$event)" class="md-fab md-primary">
                   <md-icon md-font-set="fa fa fa-pencil"></md-icon>
                   <md-tooltip md-direction="bottom">Editar</md-tooltip>
                 </md-button>
               </div>
               <div>
-                <md-button flex="flex" ng-click="showConfirmRemove($event)" class="md-fab md-warn">
+                <md-button flex="flex" ng-click="showConfirmRemove(index,$event)" class="md-fab md-warn">
                   <md-icon md-font-set="fa fa fa-remove"></md-icon>
                   <md-tooltip md-direction="bottom">Eliminar</md-tooltip>
                 </md-button>
@@ -44,6 +39,10 @@
           <md-divider></md-divider>
         </md-list-item>
       </md-list>
+      <md-button style-add-ground="style-add-ground" flex="flex" ng-click="showCreateGround($event)" class="md-fab md-primary">
+        <md-icon md-font-set="fa fa fa-plus"></md-icon>
+        <md-tooltip md-direction="top">Crear Terreno</md-tooltip>
+      </md-button>
     </md-card>
   </md-content>
 </div>

@@ -1,0 +1,101 @@
+
+<div class="editGround">
+  <md-dialog aria-label="editarGround" ng-cloak="ng-cloak" style="max-width:400px;">
+    <form>
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <h2>{{content.title}}</h2><span flex="flex"></span>
+          <md-button ng-click="cancel()" class="md-icon-button">
+            <md-icon aria-label="Cerrar" class="fa fa-remove"></md-icon>
+          </md-button>
+        </div>
+      </md-toolbar>
+      <md-dialog-content style="max-height:450px;" class="scrollbars">
+        <div class="md-dialog-content">
+          <form>
+            <md-content layout-padding="layout-padding" layout="column" layout-sm="column">
+              <div layout="row">
+                <md-input-container flex="flex">
+                  <label>Registro Publico</label>
+                  <input ng-model="ground.regPub"/>
+                </md-input-container>
+                <md-input-container flex="flex">
+                  <label>Direccion</label>
+                  <input ng-model="ground.direction"/>
+                </md-input-container>
+              </div>
+              <div layout="row">
+                <md-input-container flex="flex">
+                  <label>Metros cuadrados</label>
+                  <input ng-model="ground.area"/>
+                </md-input-container>
+                <md-input-container flex="flex">
+                  <label>Precio Base sugerible</label>
+                  <input ng-model="ground.precioBase"/>
+                </md-input-container>
+              </div>
+              <div style-maps="style-maps" layout="column">
+                <md-input-container>
+                  <label>Direccion de Google Maps</label>
+                  <input ng-model="ground.urlGMAPS"/>
+                </md-input-container>
+                <div layout="column">
+                  <h4 flex="flex">Coordenadas geograficas</h4>
+                  <div layout="row">
+                    <md-input-container flex="50">
+                      <label>latitud</label>
+                      <input ng-model="ground.coordinates.latitude" placeholder="latitude"/>
+                    </md-input-container>
+                    <md-input-container flex="50">
+                      <label>longitud</label>
+                      <input ng-model="ground.coordinates.longitude" placeholder="longitud"/>
+                    </md-input-container>
+                  </div>
+                </div>
+              </div>
+              <div layout="row">
+                <md-input-container flex="flex">
+                  <label>Detalle</label>
+                  <textarea style="max-height:90px;" ng-model="ground.notes" rows="3" columns="3" md-maxlength="500"></textarea>
+                </md-input-container>
+              </div>
+              <div layout="column" layout-align="center center">
+                <input hide="hide" flex="flex" type="file" image-with-preview="image-with-preview" ng-model="ground.picture" accept="image/jpeg,image/png"/><img style-preview="style-preview" flex="flex" ng-src="{{ground.picture.src}}" alt="terreno-imagen" width="300" height="150"/>
+              </div>
+              <div layout="row">
+                <md-input-container flex="flex">
+                  <label>Departamento</label>
+                  <md-select name="departamento" ng-model="ground.departamento">
+                    <md-option value="1">Lima</md-option>
+                    <md-option value="2">Trujillo</md-option>
+                    <md-option value="3">Arequipa</md-option>
+                  </md-select>
+                </md-input-container>
+                <md-input-container flex="flex">
+                  <label>Provincia</label>
+                  <md-select name="provincia" ng-model="ground.provincia">
+                    <md-option value="1">Lima</md-option>
+                    <md-option value="2">Trujillo</md-option>
+                    <md-option value="3">Arequipa</md-option>
+                  </md-select>
+                </md-input-container>
+                <md-input-container flex="flex">
+                  <label>Distrito</label>
+                  <md-select name="distrito" ng-model="ground.distrito">
+                    <md-option value="1">Lima</md-option>
+                    <md-option value="2">Trujillo</md-option>
+                    <md-option value="3">Arequipa</md-option>
+                  </md-select>
+                </md-input-container>
+              </div>
+            </md-content>
+          </form>
+        </div>
+      </md-dialog-content>
+      <div layout="row" class="md-actions">
+        <md-button ng-click="answer('not useful')">CANCELAR</md-button><span flex="flex"></span>
+        <md-button ng-click="answer(ground)">GUARDAR</md-button>
+      </div>
+    </form>
+  </md-dialog>
+</div>

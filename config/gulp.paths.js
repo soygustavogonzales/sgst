@@ -10,7 +10,7 @@ module.exports =
 			"dest": "public/modules/home/views"
 		},
 		"grounds:jade:html": {
-			"origin": "public/modules/grounds/views/development/**/*.jade",
+			"origin": "public/modules/grounds/views/development/*.jade",
 			"dest": "public/modules/grounds/views"
 		},
 		"grounds:partials:jade:html": {
@@ -117,6 +117,7 @@ module.exports =
 				"public/bower_components/lodash/lodash.min.js",
 				"public/bower_components/angular-simple-logger/dist/angular-simple-logger.min.js",
 				"public/bower_components/angular-google-maps/dist/angular-google-maps.min.js",
+				"public/bower_components/ng-image-input-with-preview/dist/ng-image-input-with-preview.min.js",
 				"https://maps.googleapis.com/maps/api/js?sensor=false"
 			],
 			"dest": "public/modules/core/javascripts",

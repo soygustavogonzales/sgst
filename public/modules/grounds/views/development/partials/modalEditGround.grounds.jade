@@ -1,0 +1,72 @@
+.editGround
+	md-dialog(aria-label="editarGround" ng-cloak style="max-width:400px;")
+		form
+			md-toolbar
+				div.md-toolbar-tools
+					h2 {{content.title}}
+					span(flex)
+					md-button.md-icon-button(ng-click="cancel()")
+						md-icon.fa.fa-remove(aria-label="Cerrar")
+			md-dialog-content.scrollbars(style="max-height:450px;")
+				div.md-dialog-content
+					form
+						md-content(layout-padding layout="column" layout-sm="column")
+							div(layout="row")
+								md-input-container(flex)
+									label Registro Publico
+									input(ng-model="ground.regPub")
+								md-input-container(flex)
+									label Direccion
+									input(ng-model="ground.direction")
+							div(layout="row")
+								md-input-container(flex)
+									label Metros cuadrados
+									input(ng-model="ground.area")
+								md-input-container(flex)
+									label Precio Base sugerible
+									input(ng-model="ground.precioBase")
+							div(style-maps layout="column")
+								md-input-container
+									label Direccion de Google Maps
+									input(ng-model="ground.urlGMAPS")
+								div(layout="column")
+									h4(flex) Coordenadas geograficas
+									div(layout="row")
+										md-input-container(flex="50")
+											label latitud
+											input(ng-model="ground.coordinates.latitude" placeholder="latitude")
+										md-input-container(flex="50")
+											label longitud
+											input(ng-model="ground.coordinates.longitude" placeholder="longitud")
+							div(layout="row")
+								md-input-container(flex)
+									label Detalle
+									textarea(style="max-height:90px;" ng-model="ground.notes" rows="3" columns="3" md-maxlength="500")
+							div(layout="column" layout-align="center center")
+								input(hide flex type="file" image-with-preview ng-model="ground.picture" accept="image/jpeg,image/png")
+								img(style-preview flex ng-src="{{ground.picture.src}}" alt="terreno-imagen" width="300" height="150")
+							div(layout="row")
+								md-input-container(flex)
+									label Departamento
+									md-select(name="departamento" ng-model="ground.departamento")
+										md-option(value="1") Lima
+										md-option(value="2") Trujillo
+										md-option(value="3") Arequipa
+								md-input-container(flex)
+									label Provincia
+									md-select(name="provincia" ng-model="ground.provincia")
+										md-option(value="1") Lima
+										md-option(value="2") Trujillo
+										md-option(value="3") Arequipa
+								md-input-container(flex)
+									label Distrito
+									md-select(name="distrito" ng-model="ground.distrito")
+										md-option(value="1") Lima
+										md-option(value="2") Trujillo
+										md-option(value="3") Arequipa
+			div.md-actions(layout="row")
+				md-button(ng-click="answer('not useful')")
+					| CANCELAR
+				span(flex)
+				md-button(ng-click="answer(ground)")
+					| GUARDAR

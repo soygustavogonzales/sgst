@@ -14,5 +14,4 @@ users.route('/list')
 				}
 		])
 })
-users.nameSpace = "/users"
 module.exports = users;

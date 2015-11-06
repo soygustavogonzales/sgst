@@ -22,6 +22,7 @@
     "jsonfile": "^2.2.2",
     "line-by-line": "^0.1.4",
     "minify": "^1.4.22",
+    "mongoose": "^4.2.4",
     "morgan": "~1.3.0",
     "prompt": "^0.2.14",
     "q": "^1.4.1",

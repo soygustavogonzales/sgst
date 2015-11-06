@@ -10,9 +10,18 @@
 .scrollbars::-webkit-scrollbar {
   background-color: transparent;
   height: 6px;
+  width: 6px;
 }
 .scrollbars::-webkit-scrollbar-thumb {
-  background-color: #ddd;
+  background-color: #7e7e7e;
+}
+.mapita {
+  height: 200px;
+}
+.grounds [style-add-ground] {
+  position: fixed;
+  bottom: .8em;
+  right: .2em;
 }
 .grounds md-list-item {
   padding: .8em;

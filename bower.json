@@ -26,7 +26,8 @@
     "angular-messages": "~1.4.3",
     "angular-local-storage": "~0.2.2",
     "angular-sanitize": "~1.4.3",
-    "angucomplete-alt": "~1.1.0"
+    "angucomplete-alt": "~1.1.0",
+    "ng-image-input-with-preview": "~0.0.6"
   },
   "license": "MIT",
   "ignore": [
