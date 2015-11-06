@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node ./bin/www"
   },
+  "engines" : { "node" : "0.10.36","npm":"1.4.28" },
   "dependencies": {
     "ascii-art": "0.0.2-alpha",
     "body-parser": "~1.8.1",
