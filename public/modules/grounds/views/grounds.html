@@ -8,8 +8,9 @@
       <md-list>
         <md-subheader class="md-no-sticky">Lista de Terrenos</md-subheader>
         <md-list-item ng-repeat="(index,ground) in grounds" class="md-3-line">
-          <!--ui-gmap-google-map(hide-sm center='ground.coordinates',zoom='16')ui-gmap-marker(coords="ground.coordinates" idkey="$index")
-          -->
+          <ui-gmap-googlSe-map hide-sm="hide-sm" center="ground.coordinates" zoom="16">
+            <ui-gmap-marker coords="ground.coordinates" idkey="$index"></ui-gmap-marker>
+          </ui-gmap-googlSe-map>
           <div layout="column" layout-padding="layout-padding" class="md-list-item-text">
             <div layout="row">
               <h3:em>Registro Publico# {{ground.regPub}}</h3:em>

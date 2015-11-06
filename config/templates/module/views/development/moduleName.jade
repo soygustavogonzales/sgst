@@ -6,7 +6,7 @@
 			md-list
 				md-subheader.md-no-sticky Lista de Terrenos
 				md-list-item.md-3-line(ng-repeat="(index,ground) in grounds")
-					//ui-gmap-google-map(hide-sm center='ground.coordinates',zoom='16')
+					ui-gmap-googlSe-map(hide-sm center='ground.coordinates',zoom='16')
 							ui-gmap-marker(coords="ground.coordinates" idkey="$index")
 					div.md-list-item-text(layout="column" layout-padding)
 						div(layout="row")
