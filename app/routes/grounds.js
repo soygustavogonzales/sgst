@@ -41,6 +41,6 @@ var update = function(req,res){
 grounds.route('/list').get(listAll);
 grounds.route('/create').post(create);
 grounds.route('/delete/:id').delete(remove);
-grounds.route('/update/:id').update(update);
+grounds.route('/update/:id').put(update);
 
 module.exports = grounds;
