@@ -1,0 +1,19 @@
+extends layout-login
+
+block content
+  div(ng-app="loginApp", ng-controller="ctrlLogin", layout="column", layout-align="center center", layout-fill)
+    div(class="loginBox md-whiteframe-z1", layout="column")
+      md-toolbar
+        h2(class="md-toolbar-tools")
+          span Login
+      md-content(class="md-padding", layout="column")
+        md-input-container
+          label EmailAddress
+          input(type="email" ng-model="user.email")
+        md-input-container
+          label Password
+          input(type="password" ng-model="user.password" )
+        div(layout="row" layout-align="center center" style="padding-top:20px;")
+          md-button(class="md-raised md-primary" ng-click="send()") Login
+          div(flex)
+          md-button(href="", md-no-ink) Forgot Password

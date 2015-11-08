@@ -1,0 +1,6 @@
+md-bottom-sheet.md-grid
+	md-list
+		md-list-item(ng-repeat="item in items")
+			md-button.md-grid-item-content(ng-click="listItemClick($index)" ui-sref="{{item.href}}")
+				md-icon.fa-2x(md-font-set="{{item.icon}}")
+				.md-grid-text| {{item.name}}

@@ -22,6 +22,29 @@ module.exports =
 		}
 	},
 	"css": {
+		"login:css:concat:assets": {
+			"origin": [
+				"public/bower_components/bootstrap/dist/css/bootstrap.min.css",
+				"public/bower_components/angucomplete-alt/angucomplete-alt.css",
+				"public/bower_components/angular-material/angular-material.min.css",
+				"public/bower_components/angular-loading-bar/build/loading-bar.min.css"
+			],
+			"dest": "public/modules/login/stylesheets",
+			"outputFileName": "login.all.assets.css"
+		},
+		"login:less:css": {
+			"origin": {
+				"watch": "public/modules/login/stylesheets/development/less/**/*.less",
+				"compile": [
+					"public/modules/login/stylesheets/development/less/*.less",
+					"public/modules/login/stylesheets/development/less/login.styles.less"
+				]
+			},
+			"dest": "public/modules/login/stylesheets",
+			"path_dependencies": [
+				"public/modules/login/stylesheets/development/less"
+			]
+		},
 		"core:css:concat:assets": {
 			"origin": [
 				"public/bower_components/bootstrap/dist/css/bootstrap.min.css",
@@ -82,6 +105,37 @@ module.exports =
 		}
 	},
 	"js": {
+		"login:js:concat:app": {
+			"origin": [
+				"public/modules/login/javascripts/development/app/loginApp.js",
+				"public/modules/login/javascripts/development/app/providers/*.js",
+				"public/modules/login/javascripts/development/app/controllers/*.js",
+				"public/modules/login/javascripts/development/app/services/*.js",
+				"public/modules/login/javascripts/development/app/directives/*.js",
+				"public/modules/login/javascripts/development/app/filters/*.js",
+				"public/modules/login/javascripts/development/app/factories/*.js"
+			],
+			"dest": "public/modules/login/javascripts",
+			"outputFileName": "login.app.js"
+		},
+		"login:js:concat:assets": {
+			"origin": [
+				"public/bower_components/jquery/dist/jquery.min.js",
+				"public/bower_components/angular/angular.min.js",
+				"public/bower_components/angular-animate/angular-animate.min.js",
+				"public/bower_components/angular-sanitize/angular-sanitize.min.js",
+				"public/bower_components/angular-aria/angular-aria.min.js",
+				"public/bower_components/angular-material/angular-material.min.js",
+				"public/bower_components/angular-messages/angular-messages.min.js",
+				"public/bower_components/angular-local-storage/dist/angular-local-storage.min.js",
+				"public/bower_components/angular-ui-router/release/angular-ui-router.min.js",
+				"public/bower_components/lodash/lodash.min.js",
+				"public/bower_components/angular-simple-logger/dist/angular-simple-logger.min.js",
+				"public/bower_components/angular-resource/angular-resource.min.js"
+			],
+			"dest": "public/modules/login/javascripts",
+			"outputFileName": "login.all.assets.js"
+		},
 		"core:js:concat:allmodules": {
 			"origin": [
 				"public/modules/core/javascripts/core.app.js",

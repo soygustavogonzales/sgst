@@ -6,6 +6,9 @@ var tasks = {
 			{name:'core:js:concat:assets',watch:false},
 			{name:'core:js:concat:app',watch:true},
 			{name:'grounds:js:concat:app',watch:true},
+			{name:'login:css:concat:assets',watch:false},
+			{name:'login:js:concat:app',watch:true},
+			{name:'login:js:concat:assets',watch:false},
 			{name:'home:js:concat:app',watch:true}
 	],
 	jade : [
@@ -17,6 +20,7 @@ var tasks = {
 	less : [
 	'core:less:css',
 	'grounds:less:css',
+	'login:less:css',
 	'home:less:css'
 	],
 	reload:[
