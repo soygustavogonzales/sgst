@@ -10,13 +10,9 @@ var listAll = function(req,res){
 }
 
 var create = function(req,res){
-	//console.log(req.body);
-	var ground = new Ground(req.body)
-	ground.save(function(err){
-  if(err)
-   console.log(err);
-  else
-   res.send(true);
+	Ground.create(req.body, function (err, ground) {
+	  if (err) res.send(err);
+	  res.send(ground)
 	})
 };
 
@@ -29,18 +25,30 @@ var remove = function(req,res){
 
 var update = function(req,res){
 
-	var q = Model.where({ _id: req.params.id });
-	q.setOptions({ multi: true, overwrite: true })
-	q.update(req.body);
-	q.update(function(){
-		res.send(true);		
+	console.log(req.body._id);
+	Ground.findById(req.params.id, function (err, ground) {
+		console.log(ground._id);
+	  if (err) {
+	  	res.send(false);
+	  }
+	  else{
+	  	Object.keys(req.body)
+	  	.forEach(function(attr){
+						 if(attr!='id'||attr!='__v'){
+						 		ground[attr] = req.body[attr];
+						 } 		
+	  	});
+		  ground.save(function(){
+		  	res.send(true);
+		  });
+	  }
 	});
 	
 };
 
-grounds.route('/list').get(listAll);
-grounds.route('/create').post(create);
-grounds.route('/delete/:id').delete(remove);
-grounds.route('/update/:id').put(update);
+grounds.route('/').get(listAll);
+grounds.route('/').post(create);
+grounds.route('/:id').delete(remove);
+grounds.route('/:id').put(update);
 
 module.exports = grounds;

@@ -9,9 +9,9 @@ var Ground = mongoose.model('Ground', {
  notes: String,
  urlGMAPS: String,
  picture: {src:String},
- Departamento: String,
- Porvincia:String,
- Distrito:String,
+ departamento: String,
+ porvincia:String,
+ distrito:String,
  dateRegister: {type:Date, default:Date.now}
 });
 

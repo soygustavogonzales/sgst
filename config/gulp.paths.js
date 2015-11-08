@@ -16,6 +16,9 @@ module.exports =
 		"grounds:partials:jade:html": {
 			"origin": "public/modules/grounds/views/development/partials/**/*.jade",
 			"dest": "public/modules/grounds/views/partials"
+		},
+		"views:reload":{
+			"origin":"app/views/**.jade"
 		}
 	},
 	"css": {
@@ -23,7 +26,8 @@ module.exports =
 			"origin": [
 				"public/bower_components/bootstrap/dist/css/bootstrap.min.css",
 				"public/bower_components/angucomplete-alt/angucomplete-alt.css",
-				"public/bower_components/angular-material/angular-material.min.css"
+				"public/bower_components/angular-material/angular-material.min.css",
+				"public/bower_components/angular-loading-bar/build/loading-bar.min.css"
 			],
 			"dest": "public/modules/core/stylesheets",
 			"outputFileName": "core.all.assets.css"
@@ -107,6 +111,7 @@ module.exports =
 				"public/bower_components/angular/angular.min.js",
 				"public/bower_components/angucomplete-alt/dist/angucomplete-alt.min.js",
 				"public/bower_components/angular-animate/angular-animate.min.js",
+				"public/bower_components/angular-loading-bar/build/loading-bar.min.js",
 				"public/bower_components/angular-sanitize/angular-sanitize.min.js",
 				"public/bower_components/angular-aria/angular-aria.min.js",
 				"public/bower_components/angular-material/angular-material.min.js",
@@ -118,6 +123,7 @@ module.exports =
 				"public/bower_components/angular-simple-logger/dist/angular-simple-logger.min.js",
 				"public/bower_components/angular-google-maps/dist/angular-google-maps.min.js",
 				"public/bower_components/ng-image-input-with-preview/dist/ng-image-input-with-preview.min.js",
+				"public/bower_components/angular-resource/angular-resource.min.js",
 				"https://maps.googleapis.com/maps/api/js?sensor=false"
 			],
 			"dest": "public/modules/core/javascripts",

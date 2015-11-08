@@ -1,6 +1,7 @@
 groundsApp.controller('ctrlModalEditGrounds', ['$scope','$mdDialog','$compile','uiGmapGoogleMapApi','ftySharedScope', function($scope,$mdDialog,$compile,uiGmapGoogleMapApi,ftySharedScope){
 
 			$scope.ground = ftySharedScope.ground;
+			$scope.departamentos = ftySharedScope.departamentos;
 			//console.log($scope.ground);
 			$scope.content = {
 				title:"Editando Terreno"
@@ -10,7 +11,7 @@ groundsApp.controller('ctrlModalEditGrounds', ['$scope','$mdDialog','$compile','
 
 			setTimeout(function(){
 					angular.element('img[style-preview]').click(function(event) {
-						console.log('click en img[style-preview]');
+						//console.log('click en img[style-preview]');
 						angular.element('input[image-with-preview]').trigger('click');
 					});
 

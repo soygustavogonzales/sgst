@@ -51,6 +51,16 @@ var gulp = require('gulp'),
 				
 	};
 
+	function reload(opt){
+
+				gulp.task(opt.taskName,function(){
+						return gulp.src(opt.origin)
+													.pipe(liveReload())
+				});
+				gulp.watch(opt.origin,[opt.taskName])
+				
+	};
+
 	function initTaskDevelopment(){
 
 		tasks.concats.forEach(function(task){
@@ -100,7 +110,15 @@ var gulp = require('gulp'),
 				})
 				gulp.watch(paths.css[taskName].origin.watch,[taskName])
 
-			})
+			});
+
+			tasks.reload.forEach(function(taskName){
+
+					reload({
+						taskName:taskName,
+						origin:paths.html[taskName].origin,
+					});
+			});
 		
 		}//.initDevelopment
 

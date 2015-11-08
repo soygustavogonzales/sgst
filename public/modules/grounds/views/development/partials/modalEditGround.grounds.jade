@@ -34,10 +34,10 @@
 									div(layout="row")
 										md-input-container(flex="50")
 											label latitud
-											input(ng-model="ground.coordinates.latitude" placeholder="latitude")
+											input(ng-model="ground.coordinates.latitude")
 										md-input-container(flex="50")
 											label longitud
-											input(ng-model="ground.coordinates.longitude" placeholder="longitud")
+											input(ng-model="ground.coordinates.longitude")
 							div(layout="row")
 								md-input-container(flex)
 									label Detalle
@@ -48,19 +48,17 @@
 							div(layout="row")
 								md-input-container(flex)
 									label Departamento
-									md-select(name="departamento" ng-model="ground.departamento")
-										md-option(value="1") Lima
-										md-option(value="2") Trujillo
-										md-option(value="3") Arequipa
+									md-select(name="departamento" ng-model="ground.departamento" required)
+										md-option(value="{{departamento.id_ubigeo}}" ng-repeat="departamento in departamentos") {{departamento.nombre_ubigeo}}
 								md-input-container(flex)
 									label Provincia
-									md-select(name="provincia" ng-model="ground.provincia")
+									md-select(name="provincia" ng-model="ground.provincia" required)
 										md-option(value="1") Lima
 										md-option(value="2") Trujillo
 										md-option(value="3") Arequipa
 								md-input-container(flex)
 									label Distrito
-									md-select(name="distrito" ng-model="ground.distrito")
+									md-select(name="distrito" ng-model="ground.distrito" required)
 										md-option(value="1") Lima
 										md-option(value="2") Trujillo
 										md-option(value="3") Arequipa

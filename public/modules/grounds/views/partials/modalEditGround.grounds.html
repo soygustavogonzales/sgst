@@ -44,11 +44,11 @@
                   <div layout="row">
                     <md-input-container flex="50">
                       <label>latitud</label>
-                      <input ng-model="ground.coordinates.latitude" placeholder="latitude"/>
+                      <input ng-model="ground.coordinates.latitude"/>
                     </md-input-container>
                     <md-input-container flex="50">
                       <label>longitud</label>
-                      <input ng-model="ground.coordinates.longitude" placeholder="longitud"/>
+                      <input ng-model="ground.coordinates.longitude"/>
                     </md-input-container>
                   </div>
                 </div>
@@ -65,15 +65,13 @@
               <div layout="row">
                 <md-input-container flex="flex">
                   <label>Departamento</label>
-                  <md-select name="departamento" ng-model="ground.departamento">
-                    <md-option value="1">Lima</md-option>
-                    <md-option value="2">Trujillo</md-option>
-                    <md-option value="3">Arequipa</md-option>
+                  <md-select name="departamento" ng-model="ground.departamento" required="required">
+                    <md-option value="{{departamento.id_ubigeo}}" ng-repeat="departamento in departamentos">{{departamento.nombre_ubigeo}}</md-option>
                   </md-select>
                 </md-input-container>
                 <md-input-container flex="flex">
                   <label>Provincia</label>
-                  <md-select name="provincia" ng-model="ground.provincia">
+                  <md-select name="provincia" ng-model="ground.provincia" required="required">
                     <md-option value="1">Lima</md-option>
                     <md-option value="2">Trujillo</md-option>
                     <md-option value="3">Arequipa</md-option>
@@ -81,7 +79,7 @@
                 </md-input-container>
                 <md-input-container flex="flex">
                   <label>Distrito</label>
-                  <md-select name="distrito" ng-model="ground.distrito">
+                  <md-select name="distrito" ng-model="ground.distrito" required="required">
                     <md-option value="1">Lima</md-option>
                     <md-option value="2">Trujillo</md-option>
                     <md-option value="3">Arequipa</md-option>

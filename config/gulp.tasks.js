@@ -18,6 +18,9 @@ var tasks = {
 	'core:less:css',
 	'grounds:less:css',
 	'home:less:css'
+	],
+	reload:[
+	'views:reload'
 	]
 
 }

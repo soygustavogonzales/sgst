@@ -12,6 +12,10 @@ var list_routes = [
 	{
 		nameSpace:'/grounds',
 		path:path_+'/'+'grounds'
+	},
+	{
+		nameSpace:'/departamentos',
+		path:path_+'/'+'departamentos'
 	}
 ]
 

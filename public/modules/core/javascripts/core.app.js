@@ -1,4 +1,16 @@
-var coreApp = angular.module('coreApp',['angucomplete-alt','ngMaterial','ui.router','ngMessages','LocalStorageModule','ngSanitize', 'uiGmapgoogle-maps','ngImageInputWithPreview']);
+var coreApp = angular.module('coreApp',[
+		,'angucomplete-alt'
+		,'ngMaterial'
+		,'ui.router'
+		,'ngMessages'
+		,'LocalStorageModule'
+		,'ngSanitize'
+	 ,'uiGmapgoogle-maps'
+	 ,'ngImageInputWithPreview'
+	 ,'angular-loading-bar'
+	 ,'ngAnimate'
+	 ,'ngResource'
+	 ]);
 coreApp.config(['$mdIconProvider',function($mdIconProvider) {
 	$mdIconProvider
 			.defaultFontSet('fontawesome');
