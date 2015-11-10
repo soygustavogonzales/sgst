@@ -6,7 +6,7 @@ coreApp.config(['$stateProvider','$urlRouterProvider', function( $stateProvider,
 	$urlRouterProvider.otherwise('/');
 	$stateProvider
 		.state('grounds',{
-			url:'/grounds',
+			url:'/',
 			templateUrl:'/modules/grounds/views/grounds.html',
 			controller:'ctrlGrounds'
 		})
@@ -22,11 +22,13 @@ var ctrlGrounds = function(
 	,ftySharedScope
 	,$resource
 	,svcGrounds
+  ,svcMongoAPI
 	){
 
 
-	$http.get('/departamentos/list').then(function(response){
-			ftySharedScope.departamentos = response.data;
+  
+  $http.get('/departamentos/list').then(function(response){
+      ftySharedScope.departamentos = response.data;
 	});
 
 	uiGmapGoogleMapApi.then(function(){
@@ -175,6 +177,7 @@ ctrlGrounds.$inject = [
 ,'ftySharedScope'
 ,'$resource'
 ,'svcGrounds'
+,'svcMongoAPI'
 ];
 
 groundsApp.controller('ctrlGrounds',ctrlGrounds);
@@ -292,5 +295,6 @@ groundsApp.factory("ftySharedScope",['$rootScope', function($rootScope) {
     var scope = $rootScope.$new(true);
     scope.ground = {};
     scope.departamentos = {};
+    scope.user = {};
     return scope;
 }]);

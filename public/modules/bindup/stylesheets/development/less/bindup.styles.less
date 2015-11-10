@@ -1,0 +1,49 @@
+@import '../../../../buyer/stylesheets/development/less/variables/media-displays.less';
+@import '../../../../buyer/stylesheets/development/less/mixins/mixin.less';
+
+	.mapita{
+		height: 200px;
+	}
+.bindup{
+
+	md-list-item{
+			padding: .8em;
+		.md-list-item-text{
+				position: relative;
+				z-index: 1;
+					.angular-google-map-container{ 
+							opacity: .98;
+							height: 300px;
+						}
+				.bindup-subject{
+					padding: .5em;
+					overflow: hidden;
+					position: absolute;
+					z-index: 1;
+					@media @tablet{
+						background-color: rgba(33,33,33,.5);
+						h4{
+							color: white ;
+						}
+						p{
+							color: white ;
+						}
+					}
+					@media @desktop-xl{
+						background-color: rgba(33,33,33,.5);
+						h4{
+							color: white ;
+						}
+						p{
+							color: white ;
+						}
+					}
+				}
+		}
+	}
+	
+	img{
+		height: 300px;
+		opacity: 1;
+	}
+}

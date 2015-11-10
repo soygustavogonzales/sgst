@@ -1,0 +1,63 @@
+/*
+@smartphones:  ~&quot;only screen and (max-width: 479px)&quot;;
+@tablets: ~&quot;only screen and (min-width: 768px) and (max-width: 959px)&quot;;
+*/
+.scrollbars::-webkit-scrollbar-track {
+  background-color: rgba(125, 116, 116, 0.12);
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+}
+.scrollbars::-webkit-scrollbar {
+  background-color: transparent;
+  height: 6px;
+  width: 6px;
+}
+.scrollbars::-webkit-scrollbar-thumb {
+  background-color: #7e7e7e;
+}
+.mapita {
+  height: 200px;
+}
+.bindup md-list-item {
+  padding: .8em;
+}
+.bindup md-list-item .md-list-item-text {
+  position: relative;
+  z-index: 1;
+}
+.bindup md-list-item .md-list-item-text .angular-google-map-container {
+  opacity: .98;
+  height: 300px;
+}
+.bindup md-list-item .md-list-item-text .bindup-subject {
+  padding: .5em;
+  overflow: hidden;
+  position: absolute;
+  z-index: 1;
+}
+@media only screen and (min-width: 530px) and (max-width: 949px) {
+  .bindup md-list-item .md-list-item-text .bindup-subject {
+    background-color: rgba(33, 33, 33, 0.5);
+  }
+  .bindup md-list-item .md-list-item-text .bindup-subject h4 {
+    color: white ;
+  }
+  .bindup md-list-item .md-list-item-text .bindup-subject p {
+    color: white ;
+  }
+}
+@media only screen and (min-width: 1129px) {
+  .bindup md-list-item .md-list-item-text .bindup-subject {
+    background-color: rgba(33, 33, 33, 0.5);
+  }
+  .bindup md-list-item .md-list-item-text .bindup-subject h4 {
+    color: white ;
+  }
+  .bindup md-list-item .md-list-item-text .bindup-subject p {
+    color: white ;
+  }
+}
+.bindup img {
+  height: 300px;
+  opacity: 1;
+}

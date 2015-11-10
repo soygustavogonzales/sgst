@@ -1,0 +1,90 @@
+/*
+@smartphones:  ~&quot;only screen and (max-width: 479px)&quot;;
+@tablets: ~&quot;only screen and (min-width: 768px) and (max-width: 959px)&quot;;
+*/
+.scrollbars::-webkit-scrollbar-track {
+  background-color: rgba(125, 116, 116, 0.12);
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+}
+.scrollbars::-webkit-scrollbar {
+  background-color: transparent;
+  height: 6px;
+  width: 6px;
+}
+.scrollbars::-webkit-scrollbar-thumb {
+  background-color: #7e7e7e;
+}
+.buyer {
+  font-size: 1.4em;
+}
+.buyer[ui-view].ng-enter,
+.buyer[ui-view].ng-leave {
+  position: absolute;
+  left: 0;
+  right: 0;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+.buyer[ui-view].ng-enter {
+  opacity: 0;
+  -webkit-transform: scale3d(0.5, 0.5, 0.5);
+  -moz-transform: scale3d(0.5, 0.5, 0.5);
+  transform: scale3d(0.5, 0.5, 0.5);
+}
+.buyer[ui-view].ng-enter-active {
+  opacity: 1;
+  -webkit-transform: scale3d(1, 1, 1);
+  -moz-transform: scale3d(1, 1, 1);
+  transform: scale3d(1, 1, 1);
+}
+.buyer[ui-view].ng-leave {
+  opacity: 1;
+  /*padding-left: 0px;*/
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+.buyer[ui-view].ng-leave-active {
+  opacity: 0;
+  /*padding-left: 100px;*/
+  -webkit-transform: translate3d(100px, 0, 0);
+  -moz-transform: translate3d(100px, 0, 0);
+  transform: translate3d(100px, 0, 0);
+}
+.btn-submenu {
+  position: fixed;
+  margin-top: 5em;
+  right: 0;
+  z-index: 3;
+}
+md-fab-toolbar {
+  position: fixed;
+  z-index: 3;
+  font-size: 1.5em;
+  width: 100%;
+}
+md-fab-toolbar md-toolbar md-fab-actions md-button md-icon,
+md-fab-toolbar md-toolbar md-fab-actions button md-icon {
+  font-size: 1.5em;
+}
+.bottomSheetdemoBasicUsage .md-inline-list-icon-label {
+  display: inline-block;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: -10px;
+  height: 24px;
+  vertical-align: middle;
+}
+.bottomSheetdemoBasicUsage .md-grid-item-content {
+  height: 96px;
+}
+.bottomSheetdemoBasicUsage .md-grid-item-content md-icon {
+  height: 48px;
+  width: 48px;
+}
+.bottomSheetdemoBasicUsage .md-grid-text {
+  padding-bottom: 5px;
+}

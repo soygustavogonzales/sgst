@@ -10,6 +10,7 @@ var coreApp = angular.module('coreApp',[
 	 ,'angular-loading-bar'
 	 ,'ngAnimate'
 	 ,'ngResource'
+	 ,'ngCookies'
 	 ]);
 coreApp.config(['$mdIconProvider',function($mdIconProvider) {
 	$mdIconProvider

@@ -10,6 +10,7 @@ var coreApp = angular.module('coreApp',[
 	 ,'angular-loading-bar'
 	 ,'ngAnimate'
 	 ,'ngResource'
+	 ,'ngCookies'
 	 ]);
 coreApp.config(['$mdIconProvider',function($mdIconProvider) {
 	$mdIconProvider
@@ -31,8 +32,71 @@ coreApp.config(['$stateProvider','$urlRouterProvider', function( $stateProvider,
 }])
 */
 
-coreApp.controller('ctrlCore', ['$rootScope','$scope','$mdBottomSheet', function($rootScope,$scope,$mdBottomSheet){
-  console.log("ctrlCore")
+coreApp.controller('ctrlCore', [
+  '$rootScope'
+  ,'$scope'
+  ,'$mdBottomSheet'
+  ,'svcMongoAPI'
+  ,'$cookies'
+  ,'ftySharedScope'
+  ,'$q'
+  , function(
+    $rootScope
+    ,$scope
+    ,$mdBottomSheet
+    ,svcMongoAPI
+    ,$cookies
+    ,ftySharedScope
+    ,$q
+    ){
+
+    function getPrivs(){
+      
+      var defer = $q.defer();
+      var userJSON = null;
+      var userString = $cookies.get('userSession');
+      userString&&userString.trim()
+      if(userString&&userString.trim()){
+        try{
+          userJSON = JSON.parse(userString);
+
+        }catch(e){
+          userJSON = null;
+        }
+      }
+
+      if(userJSON.email){
+
+        //console.log(userJSON.roles);
+        svcMongoAPI.get("sgsdb/collections/rol/"+userJSON.roles[0]+"?").then(function(data){
+          //console.log(data.data.privilegios);
+          /*
+          */
+          var priv = [];
+          var priv_ = data.data.privilegios;
+          data.data.privilegios.forEach(function(privId){
+
+              svcMongoAPI.get("sgsdb/collections/privilegio/"+privId+"?").then(function(data){
+                //console.log(data.data);
+                priv.push(data.data)
+                if(priv.length == priv_.length){
+                  defer.resolve(priv);
+                }
+              });
+          });
+          
+        });
+      }
+      return defer.promise;
+    }
+
+    getPrivs()
+    .then(function(privList){
+      //console.log(privList);
+      ftySharedScope.user.privilegios = privList 
+      
+    })
+
 
   $scope.showGridBottomSheet = function($event) {
     $scope.alert = '';
@@ -87,20 +151,61 @@ coreApp.run(['$http','$templateCache',function($http, $templateCache) {
 
 
 
-coreApp.controller('ctrlMenuBottom',['$scope','$mdBottomSheet', function($scope, $mdBottomSheet) {
-  $scope.items = [
-    { name: 'Gestionar Terrenos', icon: 'fa fa-building',href:"grounds" },
-    { name: 'Home', icon: 'fa fa-home',href:"home" },
-    { name: 'Gestionar Subastas', icon: 'fa fa-legal',href:"auctions" },
-    { name: 'Mis datos', icon: 'fa fa-user',href:"data" },
-    { name: 'Configuraciones', icon: 'fa fa-wrench',href:"setups" }
-  ];
+coreApp.controller('ctrlMenuBottom',
+  [
+  '$scope'
+  ,'$mdBottomSheet'
+  ,'svcMongoAPI'
+  ,'$cookies'
+  ,'$q'
+  ,'ftySharedScope'
+  , function(
+    $scope
+    ,$mdBottomSheet
+    ,svcMongoAPI
+    ,$cookies
+    ,$q
+    ,ftySharedScope
+    ) {
 
-  $scope.listItemClick = function($index) {
-    var clickedItem = $scope.items[$index];
-    $mdBottomSheet.hide(clickedItem);
-  };
+
+    $scope.items = ftySharedScope.user.privilegios;
+    
+    $scope.listItemClick = function($index) {
+      var clickedItem = $scope.items[$index];
+      $mdBottomSheet.hide(clickedItem);
+    };
 }]);
+
+coreApp
+.service('svcMongoAPI', ['$http',function ($http) {
+	var src = "https://api.mongolab.com/api/1/databases/",
+	apiKey = "apiKey=0oCyMLZSK6EP9cmujUBHImYf2Pnh-bRT";
+	var parserQuery = function(queryFirst,queryLast){
+		return src+queryFirst+apiKey+(queryLast||"")
+	}
+
+	this.get = function(queryFirst,queryLast){
+		return $http.get(parserQuery(queryFirst,queryLast))
+	}
+
+	this.post = function(queryFirst,queryLast,data){
+		return $http.post(parserQuery(queryFirst,queryLast),data,
+			{headers:{
+			"Content-Type": "application/json"
+		}})
+	}
+	this.put = function(queryFirst,queryLast,data){
+		return $http.put(parserQuery(queryFirst,queryLast),data,
+			{headers:{
+			"Content-Type": "application/json"
+		}})
+	}
+	this.delete = function(queryFirst,queryLast){
+		return $http.delete(parserQuery(queryFirst,queryLast))
+	}
+
+}])
 coreApp.service('svcSample1', [ function(){
 	//...
 }])

@@ -6,7 +6,7 @@ coreApp.config(['$stateProvider','$urlRouterProvider', function( $stateProvider,
 	$urlRouterProvider.otherwise('/');
 	$stateProvider
 		.state('grounds',{
-			url:'/grounds',
+			url:'/',
 			templateUrl:'/modules/grounds/views/grounds.html',
 			controller:'ctrlGrounds'
 		})

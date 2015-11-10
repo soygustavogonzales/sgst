@@ -16,6 +16,14 @@ var list_routes = [
 	{
 		nameSpace:'/departamentos',
 		path:path_+'/'+'departamentos'
+	},
+	{
+		nameSpace:'/sgsapp',
+		path:path_+'/'+'sgsapp'
+	},
+	{
+		nameSpace:'/login',
+		path:path_+'/'+'login'
 	}
 ]
 

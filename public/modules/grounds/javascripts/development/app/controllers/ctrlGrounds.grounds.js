@@ -9,11 +9,13 @@ var ctrlGrounds = function(
 	,ftySharedScope
 	,$resource
 	,svcGrounds
+  ,svcMongoAPI
 	){
 
 
-	$http.get('/departamentos/list').then(function(response){
-			ftySharedScope.departamentos = response.data;
+  
+  $http.get('/departamentos/list').then(function(response){
+      ftySharedScope.departamentos = response.data;
 	});
 
 	uiGmapGoogleMapApi.then(function(){
@@ -162,6 +164,7 @@ ctrlGrounds.$inject = [
 ,'ftySharedScope'
 ,'$resource'
 ,'svcGrounds'
+,'svcMongoAPI'
 ];
 
 groundsApp.controller('ctrlGrounds',ctrlGrounds);

@@ -1,0 +1,23 @@
+extends layout-buyer
+
+block content
+	div(ng-controller="ctrlBuyer")
+		md-fab-toolbar.md-right(md-open="demo.isOpen",count="demo.count")
+			md-fab-trigger.align-with-text
+				md-button.md-fab.md-primary(aria-label="menu")
+					md-icon(md-font-set="fa fa-navicon fa-1x")
+			md-toolbar.md-warn
+				md-fab-actions.md-toolbar-tools
+					md-button.md-icon-button(aria-label="comment")
+						md-icon(md-font-set="fa fa-pen")
+					md-button.md-icon-button(aria-label="label")
+						md-icon(md-font-set="fa fa-flag")
+					md-button.md-icon-button(aria-label="photo")
+						md-icon(md-font-set="fa fa-ship")
+					md-button.md-icon-button(aria-label="photo")
+						md-icon(md-font-set="fa fa-ship")
+					md-button.md-icon-button(aria-label="photo")
+						md-icon(md-font-set="fa fa-ship")
+		md-button.btn-submenu.md-fab(ng-click="showGridBottomSheet($event)")
+				md-icon(md-font-set="fa fa-angle-down fa-2x")
+		md-content.buyer.md-padding(ui-view layout="column")

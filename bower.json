@@ -28,7 +28,8 @@
     "angular-sanitize": "~1.4.3",
     "angucomplete-alt": "~1.1.0",
     "ng-image-input-with-preview": "~0.0.6",
-    "angular-loading-bar": "~0.8.0"
+    "angular-loading-bar": "~0.8.0",
+    "angular-cookies": "~1.4.7"
   },
   "license": "MIT",
   "ignore": [

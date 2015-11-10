@@ -1,0 +1,31 @@
+.bindup
+	md-toolbar.md-primary
+		h1.md-toolbar-tools Pujar una oferta
+	md-content.md-padding
+		md-card
+			md-list
+				md-subheader.md-no-sticky Lista de Subastas
+				md-list-item.md-3-line(flex="30" ng-repeat="($index,subasta) in subastas")
+					md-whiteframe.md-whiteframe-4dp( flex-sm="45" flex-gt-sm="" flex-gt-md="" layout layout-align="center center")
+						div.md-list-item-text(layout="column" layout-padding)
+							div(layout="row")
+								h3:em Precio Base# S/. {{subasta.precioBase}}
+							div(layout="row" layout-sm="column" layout-align-sm="center center" layout-align-gt-sm="start start" layout-wrap)
+								div.bindup-subject(flex flex-gt-sm="30")
+									h4{{subasta.ground.direction}}
+									p{{subasta.ground.notes}}
+									p Esta subasta termina el {{subasta.fechaInicio}} a las {{subasta.horaFin}}
+							div(layout="row")
+								ui-gmap-google-map(flex="50" center='subasta.ground.coordinates' zoom='16')
+										ui-gmap-marker(coords="subasta.ground.coordinates" idkey="$index")
+								div(flex="50")
+									img(src="{{subasta.ground.picture.src}}")
+							div(layout="row")
+								h5: a(href="{{subasta.ground.urlGMAPS}}" target="_blank") Ver en Google Maps
+							div(layout="row" layout-sm="row" layout-align-sm="space-between center")
+								div
+									md-button(flex ng-click="showView($index,$event)").md-fab.md-primary
+										md-icon(md-font-set="fa fa fa-eye")
+										md-tooltip(md-direction="bottom")
+											| Ver mas detalles
+						md-divider

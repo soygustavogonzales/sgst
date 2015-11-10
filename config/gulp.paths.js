@@ -5,6 +5,10 @@ module.exports =
 			"origin": "public/modules/core/views/development/**/*.jade",
 			"dest": "public/modules/core/views"
 		},
+		"buyer:jade:html": {
+			"origin": "public/modules/buyer/views/development/**/*.jade",
+			"dest": "public/modules/buyer/views"
+		},
 		"home:jade:html": {
 			"origin": "public/modules/home/views/development/**/*.jade",
 			"dest": "public/modules/home/views"
@@ -16,6 +20,14 @@ module.exports =
 		"grounds:partials:jade:html": {
 			"origin": "public/modules/grounds/views/development/partials/**/*.jade",
 			"dest": "public/modules/grounds/views/partials"
+		},
+		"bindup:jade:html": {
+			"origin": "public/modules/bindup/views/development/*.jade",
+			"dest": "public/modules/bindup/views"
+		},
+		"bindup:partials:jade:html": {
+			"origin": "public/modules/bindup/views/development/partials/**/*.jade",
+			"dest": "public/modules/bindup/views/partials"
 		},
 		"views:reload":{
 			"origin":"app/views/**.jade"
@@ -43,6 +55,37 @@ module.exports =
 			"dest": "public/modules/login/stylesheets",
 			"path_dependencies": [
 				"public/modules/login/stylesheets/development/less"
+			]
+		},
+		"buyer:css:concat:assets": {
+			"origin": [
+				"public/bower_components/bootstrap/dist/css/bootstrap.min.css",
+				"public/bower_components/angucomplete-alt/angucomplete-alt.css",
+				"public/bower_components/angular-material/angular-material.min.css",
+				"public/bower_components/angular-loading-bar/build/loading-bar.min.css"
+			],
+			"dest": "public/modules/buyer/stylesheets",
+			"outputFileName": "buyer.all.assets.css"
+		},
+		"buyer:css:concat:allmodules": {
+			"origin": [
+				"public/modules/buyer/stylesheets/buyer.styles.css",
+				"public/modules/bindup/stylesheets/bindup.styles.css"
+			],
+			"dest": "public/modules/buyer/stylesheets",
+			"outputFileName": "buyer.all.modules.css"
+		},
+		"buyer:less:css": {
+			"origin": {
+				"watch": "public/modules/buyer/stylesheets/development/less/**/*.less",
+				"compile": [
+					"public/modules/buyer/stylesheets/development/less/*.less",
+					"public/modules/buyer/stylesheets/development/less/buyer.styles.less"
+				]
+			},
+			"dest": "public/modules/buyer/stylesheets",
+			"path_dependencies": [
+				"public/modules/buyer/stylesheets/development/less"
 			]
 		},
 		"core:css:concat:assets": {
@@ -90,6 +133,19 @@ module.exports =
 				"public/modules/core/stylesheets/development/less"
 			]
 		},
+		"bindup:less:css": {
+			"origin": {
+				"watch": "public/modules/bindup/stylesheets/development/less/**/*.less",
+				"compile": [
+					"public/modules/bindup/stylesheets/development/less/*.less",
+					"public/modules/bindup/stylesheets/development/less/bindup.styles.less"
+				]
+			},
+			"dest": "public/modules/bindup/stylesheets",
+			"path_dependencies": [
+				"public/modules/buyer/stylesheets/development/less"
+			]
+		},
 		"home:less:css": {
 			"origin": {
 				"watch": "public/modules/home/stylesheets/development/less/**/*.less",
@@ -125,6 +181,7 @@ module.exports =
 				"public/bower_components/angular-animate/angular-animate.min.js",
 				"public/bower_components/angular-sanitize/angular-sanitize.min.js",
 				"public/bower_components/angular-aria/angular-aria.min.js",
+				"public/bower_components/angular-cookies/angular-cookies.min.js",
 				"public/bower_components/angular-material/angular-material.min.js",
 				"public/bower_components/angular-messages/angular-messages.min.js",
 				"public/bower_components/angular-local-storage/dist/angular-local-storage.min.js",
@@ -135,6 +192,53 @@ module.exports =
 			],
 			"dest": "public/modules/login/javascripts",
 			"outputFileName": "login.all.assets.js"
+		},
+		"buyer:js:concat:allmodules": {
+			"origin": [
+				"public/modules/buyer/javascripts/buyer.app.js",
+				"public/modules/bindup/javascripts/bindup.app.js"
+			],
+			"dest": "public/modules/buyer/javascripts",
+			"outputFileName": "app.js"
+		},
+		"buyer:js:concat:app": {
+			"origin": [
+				"public/modules/buyer/javascripts/development/app/buyerApp.js",
+				"public/modules/buyer/javascripts/development/app/providers/*.js",
+				"public/modules/buyer/javascripts/development/app/controllers/*.js",
+				"public/modules/buyer/javascripts/development/app/services/*.js",
+				"public/modules/buyer/javascripts/development/app/directives/*.js",
+				"public/modules/buyer/javascripts/development/app/filters/*.js",
+				"public/modules/buyer/javascripts/development/app/factories/*.js"
+			],
+			"dest": "public/modules/buyer/javascripts",
+			"outputFileName": "buyer.app.js"
+		},
+		"buyer:js:concat:assets": {
+			"origin": [
+				"http://localhost:1337/vorlon.js",
+				"public/bower_components/jquery/dist/jquery.min.js",
+				"public/bower_components/angular/angular.min.js",
+				"public/bower_components/angucomplete-alt/dist/angucomplete-alt.min.js",
+				"public/bower_components/angular-animate/angular-animate.min.js",
+				"public/bower_components/angular-loading-bar/build/loading-bar.min.js",
+				"public/bower_components/angular-sanitize/angular-sanitize.min.js",
+				"public/bower_components/angular-aria/angular-aria.min.js",
+				"public/bower_components/angular-material/angular-material.min.js",
+				"public/bower_components/angular-bootstrap/ui-bootstrap.min.js",
+				"public/bower_components/angular-cookies/angular-cookies.min.js",
+				"public/bower_components/angular-messages/angular-messages.min.js",
+				"public/bower_components/angular-local-storage/dist/angular-local-storage.min.js",
+				"public/bower_components/angular-ui-router/release/angular-ui-router.min.js",
+				"public/bower_components/lodash/lodash.min.js",
+				"public/bower_components/angular-simple-logger/dist/angular-simple-logger.min.js",
+				"public/bower_components/angular-google-maps/dist/angular-google-maps.min.js",
+				"public/bower_components/ng-image-input-with-preview/dist/ng-image-input-with-preview.min.js",
+				"public/bower_components/angular-resource/angular-resource.min.js",
+				"https://maps.googleapis.com/maps/api/js?sensor=false"
+			],
+			"dest": "public/modules/buyer/javascripts",
+			"outputFileName": "buyer.all.assets.js"
 		},
 		"core:js:concat:allmodules": {
 			"origin": [
@@ -170,6 +274,7 @@ module.exports =
 				"public/bower_components/angular-aria/angular-aria.min.js",
 				"public/bower_components/angular-material/angular-material.min.js",
 				"public/bower_components/angular-bootstrap/ui-bootstrap.min.js",
+				"public/bower_components/angular-cookies/angular-cookies.min.js",
 				"public/bower_components/angular-messages/angular-messages.min.js",
 				"public/bower_components/angular-local-storage/dist/angular-local-storage.min.js",
 				"public/bower_components/angular-ui-router/release/angular-ui-router.min.js",
@@ -208,6 +313,19 @@ module.exports =
 			],
 			"dest": "public/modules/grounds/javascripts",
 			"outputFileName": "grounds.app.js"
+		},
+		"bindup:js:concat:app": {
+			"origin": [
+				"public/modules/bindup/javascripts/development/app/bindupApp.js",
+				"public/modules/bindup/javascripts/development/app/providers/*.js",
+				"public/modules/bindup/javascripts/development/app/controllers/*.js",
+				"public/modules/bindup/javascripts/development/app/services/*.js",
+				"public/modules/bindup/javascripts/development/app/directives/*.js",
+				"public/modules/bindup/javascripts/development/app/filters/*.js",
+				"public/modules/bindup/javascripts/development/app/factories/*.js"
+			],
+			"dest": "public/modules/bindup/javascripts",
+			"outputFileName": "bindup.app.js"
 		}
 	}
 }
