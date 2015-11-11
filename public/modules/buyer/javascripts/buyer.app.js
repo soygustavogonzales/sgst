@@ -11,7 +11,9 @@ var buyerApp = angular.module('buyerApp',[
 	 ,'ngAnimate'
 	 ,'ngResource'
 	 ,'ngCookies'
+	 ,'firebase'
 	 ]);
+
 buyerApp.config(['$mdIconProvider',function($mdIconProvider) {
 	$mdIconProvider
 			.defaultFontSet('fontawesome');

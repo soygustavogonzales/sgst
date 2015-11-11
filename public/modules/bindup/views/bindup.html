@@ -8,38 +8,38 @@
       <md-list>
         <md-subheader class="md-no-sticky">Lista de Subastas</md-subheader>
         <md-list-item flex="30" ng-repeat="($index,subasta) in subastas" class="md-3-line">
-          <md-whiteframe flex-sm="45" flex-gt-sm="" flex-gt-md="" layout="layout" layout-align="center center" class="md-whiteframe-4dp">
-            <div layout="column" layout-padding="layout-padding" class="md-list-item-text">
-              <div layout="row">
-                <h3:em>Precio Base# S/. {{subasta.precioBase}}</h3:em>
-              </div>
-              <div layout="row" layout-sm="column" layout-align-sm="center center" layout-align-gt-sm="start start" layout-wrap="layout-wrap">
-                <div flex="flex" flex-gt-sm="30" class="bindup-subject">
-                  <h4>{{subasta.ground.direction}}</h4>
-                  <p>{{subasta.ground.notes}}</p>
-                  <p>Esta subasta termina el {{subasta.fechaInicio}} a las {{subasta.horaFin}}</p>
-                </div>
-              </div>
-              <div layout="row">
-                <ui-gmap-google-map flex="50" center="subasta.ground.coordinates" zoom="16">
-                  <ui-gmap-marker coords="subasta.ground.coordinates" idkey="$index"></ui-gmap-marker>
-                </ui-gmap-google-map>
-                <div flex="50"><img src="{{subasta.ground.picture.src}}"/></div>
-              </div>
-              <div layout="row">
-                <h5><a href="{{subasta.ground.urlGMAPS}}" target="_blank">Ver en Google Maps</a></h5>
-              </div>
-              <div layout="row" layout-sm="row" layout-align-sm="space-between center">
-                <div>
-                  <md-button flex="flex" ng-click="showView($index,$event)" class="md-fab md-primary">
-                    <md-icon md-font-set="fa fa fa-eye"></md-icon>
-                    <md-tooltip md-direction="bottom">Ver mas detalles</md-tooltip>
-                  </md-button>
-                </div>
+          <div layout="column" layout-padding="layout-padding" class="md-list-item-text">
+            <div layout="row">
+              <h3:em>Precio Base# S/. {{subasta.precioBase}}</h3:em>
+            </div>
+            <div layout="row" layout-sm="column" layout-align-sm="center center" layout-align-gt-sm="start start" layout-wrap="layout-wrap">
+              <div flex="flex" flex-gt-sm="30" class="bindup-subject">
+                <h4>{{subasta.ground.direction}}</h4>
+                <p>{{subasta.ground.notes}}</p>
+                <p>Esta subasta termina el {{subasta.fechaInicio}} a las {{subasta.horaFin}}</p>
               </div>
             </div>
+            <div layout="row">
+              <ui-gmap-google-map flex="50" center="subasta.ground.coordinates" zoom="16">
+                <ui-gmap-marker coords="subasta.ground.coordinates" idkey="$index"></ui-gmap-marker>
+              </ui-gmap-google-map>
+              <div flex="50"><img src="{{subasta.ground.picture.src}}"/></div>
+            </div>
+            <div layout="row">
+              <h5 flex="15"><a href="{{subasta.ground.urlGMAPS}}" target="_blank">Ver en Google Maps</a></h5>
+              <div flex="flex" class="listaPujas">
+                <p ng-repeat="puja in subasta.pujas"><span>{{puja.comprador}}</span><strong>S/. {{puja.monto}} </strong></p>
+              </div>
+            </div>
+            <div layout="row">
+              <md-input-container flex="79">
+                <label>Escribe tu puja</label>
+                <input ng-model="ground.montoPuja" class="monto{{$index}}"/>
+              </md-input-container>
+              <md-button ng-click="pujar($index)" flex="5" class="md-raised md-primary">Pujar</md-button>
+            </div>
             <md-divider></md-divider>
-          </md-whiteframe>
+          </div>
         </md-list-item>
       </md-list>
     </md-card>

@@ -235,6 +235,8 @@ module.exports =
 				"public/bower_components/angular-google-maps/dist/angular-google-maps.min.js",
 				"public/bower_components/ng-image-input-with-preview/dist/ng-image-input-with-preview.min.js",
 				"public/bower_components/angular-resource/angular-resource.min.js",
+				"public/bower_components/firebase/firebase.js",
+				"public/bower_components/angularfire/dist/angularfire.min.js",
 				"https://maps.googleapis.com/maps/api/js?sensor=false"
 			],
 			"dest": "public/modules/buyer/javascripts",
